@@ -1,0 +1,10 @@
+.idea/
+.storybook/
+config/
+public/
+scripts/
+src/**/*.stories.js
+build/
+.prettierrc.js
+.eslintrc.js
+.eslintignore
