@@ -9,6 +9,7 @@ module.exports = {
     rules: {
         semi: ['error', 'never'],
         'import/no-cycle': 'off',
+        'import/no-extraneous-dependencies': 'off',
         // 'prefer-destructuring': 'off',
         'no-console': 'off',
         // 'no-undef': 'off',
