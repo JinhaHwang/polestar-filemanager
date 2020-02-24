@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     extends: ['react-app', 'airbnb', 'prettier', 'prettier/react'],
     plugins: [
@@ -33,5 +35,12 @@ module.exports = {
         browser: true,
         es6: true,
         node: true,
+    },
+    settings: {
+        'import/resolver': {
+            node: {
+                paths: [path.resolve('./src')],
+            },
+        },
     },
 }

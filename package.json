@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "story": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "start": "cross-env NODE_PATH=src node scripts/start.js",
+    "build": "cross-env NODE_PATH=src node scripts/build.js",
+    "test": "cross-env NODE_PATH=src node scripts/test.js",
+    "story": "cross-env NODE_PATH=src start-storybook -p 9009 -s public",
+    "build-storybook": "cross-env NODE_PATH=src build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -137,7 +137,9 @@
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
     "redux-saga": "^1.1.3",
+    "redux-thunk": "^2.3.0",
     "resolve": "1.15.0",
     "rxjs": "^6.5.4",
     "semver": "6.3.0"
@@ -150,10 +152,10 @@
     "@babel/plugin-transform-async-to-generator": "^7.8.3",
     "@hot-loader/react-dom": "^16.11.0",
     "@storybook/addon-actions": "^5.3.12",
-    "@storybook/addon-links": "^5.3.12",
-    "@storybook/addons": "^5.3.12",
     "@storybook/addon-knobs": "^5.3.13",
+    "@storybook/addon-links": "^5.3.12",
     "@storybook/addon-storysource": "^5.3.13",
+    "@storybook/addons": "^5.3.12",
     "@storybook/preset-ant-design": "^0.0.1",
     "@storybook/preset-create-react-app": "^1.5.2",
     "@storybook/react": "^5.3.12",

@@ -6,36 +6,48 @@ const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
 class DirectoryTree extends React.Component {
     static propTypes = {
-      items: PropTypes.array
-    };
-
-    static defaultProps = {
-      items: [
-          { title: 'Expand to load', key: '0' },
-          { title: 'Expand to load', key: '1' },
-          { title: 'Tree Node', key: '2', isLeaf: true },
-      ]
-    };
-
-    onSelect = (keys, event) => {
-        console.log('Trigger Select', keys, event)
+        items: PropTypes.array,
+        onSelect: PropTypes.func,
+        onExpand: PropTypes.func,
     }
 
-    onExpand = () => {
-        console.log('Trigger Expand')
+    static defaultProps = {
+        items: [
+            { title: 'Expand to load', key: '0' },
+            { title: 'Expand to load', key: '1' },
+            { title: 'Tree Node', key: '2', isLeaf: true },
+        ],
+        onSelect: null,
+        onExpand: null,
+    }
+
+    onSelect = (keys, event) => {
+        const { onSelect } = this.props
+        if (onSelect) onSelect(keys, event)
+    }
+
+    onExpand = (keys, event) => {
+        const { onExpand } = this.props
+        if (onExpand) onExpand(keys, event)
     }
 
     renderTreeNodes = data =>
-        data ? data.map(item => {
-            if (item.children) {
-                return (
-                    <TreeNode title={item.title} key={item.key} dataRef={item}>
-                        {this.renderTreeNodes(item.children)}
-                    </TreeNode>
-                )
-            }
-            return <TreeNode key={item.key} {...item} dataRef={item} />
-        }) : null
+        data
+            ? data.map(item => {
+                  if (item.children) {
+                      return (
+                          <TreeNode
+                              title={item.title}
+                              key={item.key}
+                              dataRef={item}
+                          >
+                              {this.renderTreeNodes(item.children)}
+                          </TreeNode>
+                      )
+                  }
+                  return <TreeNode key={item.key} {...item} dataRef={item} />
+              })
+            : null
 
     render() {
         const { items, ...rest } = this.props
