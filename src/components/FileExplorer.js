@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Provider } from 'react-redux'
 import DirectoryTree from 'components/DirectoryTree'
 import { fileExplorerType } from 'common/constants'
-import configureStore from './redux/store/configureStore'
+import configureStore from 'stores/configureStore'
 
 class FileExplorer extends Component {
     static propTypes = {

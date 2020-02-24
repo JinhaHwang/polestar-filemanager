@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 // import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
 import reduxThunk from 'redux-thunk'
-import rootReducer from '../reducers/rootReducer'
+import rootReducer from 'reducers/rootReducer'
 // import rootSaga from '../sagas'
 
 export default function configureStore(initialState) {
