@@ -6,6 +6,7 @@ module.exports = {
         // ...
         'prettier',
         'react-hooks',
+        'jest',
     ],
     parser: 'babel-eslint',
     rules: {
@@ -30,11 +31,18 @@ module.exports = {
 
         'react-hooks/rules-of-hooks': 'off',
         'react-hooks/exhaustive-deps': 'off',
+
+        'jest/no-disabled-tests': 'warn',
+        'jest/no-focused-tests': 'error',
+        'jest/no-identical-title': 'error',
+        'jest/prefer-to-have-length': 'warn',
+        'jest/valid-expect': 'error',
     },
     env: {
         browser: true,
         es6: true,
         node: true,
+        'jest/globals': true,
     },
     settings: {
         'import/resolver': {

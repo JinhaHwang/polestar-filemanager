@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import DirectoryTree from 'components/DirectoryTree'
 import { fileExplorerType } from 'common/constants'
 import configureStore from 'stores/configureStore'
+import FileList from './FileList'
 
 class FileExplorer extends Component {
     static propTypes = {
@@ -32,6 +33,12 @@ class FileExplorer extends Component {
             <Provider store={this.store}>
                 {type === fileExplorerType.DIRECTORY_TREE && (
                     <DirectoryTree
+                        className={classNames(defaultClassName, className)}
+                        {...rest}
+                    />
+                )}
+                {type === fileExplorerType.FILE_LIST && (
+                    <FileList
                         className={classNames(defaultClassName, className)}
                         {...rest}
                     />

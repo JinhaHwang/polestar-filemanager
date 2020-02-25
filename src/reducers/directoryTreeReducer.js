@@ -12,7 +12,9 @@ const derectoryTreeReducer = handleActions(
             return state.set('path', fromJS(action.payload))
         },
     },
-    Map({}),
+    Map({
+        path: ''
+    }),
 )
 
 export default derectoryTreeReducer
