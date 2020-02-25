@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Tree } from 'antd'
+import { Field } from 'polestar-ui-kit';
 
 const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
@@ -52,16 +53,21 @@ class DirectoryTree extends React.Component {
     render() {
         const { items, ...rest } = this.props
         return (
-            <AntDirectoryTree
-                {...rest}
-                multiple
-                defaultExpandAll
-                onSelect={this.onSelect}
-                onExpand={this.onExpand}
-                expandAction="doubleClick"
-            >
-                {this.renderTreeNodes(items)}
-            </AntDirectoryTree>
+            <>
+                <AntDirectoryTree
+                    {...rest}
+                    multiple
+                    defaultExpandAll
+                    onSelect={this.onSelect}
+                    onExpand={this.onExpand}
+                    expandAction="doubleClick"
+                >
+                    {this.renderTreeNodes(items)}
+                </AntDirectoryTree>
+                <Field.Input
+                    
+                />
+            </>
         )
     }
 }
