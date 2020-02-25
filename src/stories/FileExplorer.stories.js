@@ -3,6 +3,9 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { fileExplorerType } from 'common/constants'
 import FileExplorer from 'components/FileExplorer'
+import {createAction, handleActions} from "redux-actions";
+import { SELECT_TREE_NODE, selectTreeNode } from '../actions'
+import {fromJS, Map} from "immutable";
 
 export default {
     title: 'FileExplorer',
@@ -53,7 +56,6 @@ export const defaultType = () => (
         ]}
     />
 )
-
 
 export const otherType = () => (
     <FileExplorer
@@ -122,3 +124,7 @@ export const multiExplorer = () => (
         />
     </>
 )
+
+export const myStoryFunc = () => {
+    return <FileExplorer />
+}
