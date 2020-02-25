@@ -15,7 +15,7 @@ export const historyNavigator = () => (
         onBack={action('BACK')}
         onForward={action('FORWARD')}
         onRefresh={action('REFRESH')}
-        onSubmit={action('SET_PATH')}
+        onSubmit={action('EXPLORE_PATH')}
     />
 )
 
@@ -25,6 +25,6 @@ export const fileExplorerTypeFileList = () => (
         onBack={action('BACK')}
         onForward={action('FORWARD')}
         onRefresh={action('REFRESH')}
-        onSubmit={action('SET_PATH')}
+        onSubmit={action('EXPLORE_PATH')}
     />
 )

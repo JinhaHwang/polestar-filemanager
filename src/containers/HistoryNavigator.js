@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setPath } from '../actions'
+import { explorePath, changePath } from 'actions'
 import HistoryNavigator from '../components/HistoryNavigator'
 import { trimPathSelector } from '../selectors'
 
@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setPathDispatch: path => dispatch(setPath(path)),
+        explorePath: path => dispatch(explorePath(path)),
+        changePath: path => dispatch(changePath(path)),
     }
 }
 

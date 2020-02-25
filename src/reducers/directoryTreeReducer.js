@@ -1,14 +1,14 @@
-import { handleActions } from 'redux-actions'
+import { handleActions, combineActions } from 'redux-actions'
 import { fromJS, Map } from 'immutable'
 
-import { selectTreeNode, setPath } from '../actions'
+import {changePath, selectTreeNode, setPath} from '../actions'
 
 const derectoryTreeReducer = handleActions(
     {
         [selectTreeNode]: (state, action) => {
             return state.set('selectedNode', fromJS(action.payload))
         },
-        [setPath]: (state, action) => {
+        [combineActions(setPath, changePath)]: (state, action) => {
             return state.set('path', fromJS(action.payload))
         },
     },

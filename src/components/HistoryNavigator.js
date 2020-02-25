@@ -1,10 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Button, Field} from 'polestar-ui-kit'
 
-const HistoryNavigator = ({ onBack, onForward, onRefresh, onSubmit, path: directoryTreePath, ...rest }) => {
-    const [path, setPath] = useState(directoryTreePath)
-
+const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, path, ...rest }) => {
     const handleBack = e => {
         if (onBack) onBack(e)
     }
@@ -15,10 +13,12 @@ const HistoryNavigator = ({ onBack, onForward, onRefresh, onSubmit, path: direct
         if (onRefresh) onRefresh(e)
     }
     const handleChange = e => {
-        setPath(e.target.value)
+        const { value } = e.target
+        if (rest.changePath) rest.changePath(value)
+        if (onChange) onChange(value)
     }
     const handleSubmit = e => {
-        if (rest.setPathDispatch) rest.setPathDispatch(path)
+        if (rest.explorePath) rest.explorePath(path)
         if (onSubmit) onSubmit(e)
     }
     return (
@@ -53,6 +53,7 @@ HistoryNavigator.propTypes = {
     onBack: PropTypes.func,
     onForward: PropTypes.func,
     onRefresh: PropTypes.func,
+    onChange: PropTypes.func,
     onSubmit: PropTypes.func,
     path: PropTypes.string,
 }
@@ -60,6 +61,7 @@ HistoryNavigator.defaultProps = {
     onBack: null,
     onForward: null,
     onRefresh: null,
+    onChange: null,
     onSubmit: null,
     path: '',
 }
