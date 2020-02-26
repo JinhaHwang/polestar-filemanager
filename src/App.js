@@ -6,7 +6,7 @@ import { fileExplorerType } from 'common/constants'
 function App() {
     return (
         <div className="App">
-            <FileExplorer type={fileExplorerType.DIRECTORY_TREE} />
+            <FileExplorer type={fileExplorerType.FILE_LIST} />
         </div>
     )
 }

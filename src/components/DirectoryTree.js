@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Tree } from 'antd'
-import { Field } from 'polestar-ui-kit';
+import { Field } from 'polestar-ui-kit'
 
 const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
@@ -64,9 +64,7 @@ class DirectoryTree extends React.Component {
                 >
                     {this.renderTreeNodes(items)}
                 </AntDirectoryTree>
-                <Field.Input
-                    
-                />
+                <Field.Input />
             </>
         )
     }

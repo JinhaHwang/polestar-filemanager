@@ -1,8 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Button, Field} from 'polestar-ui-kit'
+import { Button, Input } from 'antd'
 
-const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, path, trimPath, ...rest }) => {
+const HistoryNavigator = ({
+    onBack,
+    onForward,
+    onRefresh,
+    onChange,
+    onSubmit,
+    path,
+    trimPath,
+    ...rest
+}) => {
     const handleBack = e => {
         if (onBack) onBack(e)
     }
@@ -28,17 +37,12 @@ const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, pa
                 display: 'flex',
             }}
         >
-            <Button icon="back" onClick={handleBack}>
-                뒤로
-            </Button>
-            <Button icon="forward" onClick={handleForward}>
-                앞으로
-            </Button>
-            <Button icon="handleRefresh" onClick={handleRefresh}>
-                새로고침
-            </Button>
+            <Button icon="left" onClick={handleBack} />
+            <Button icon="right" onClick={handleForward} />
+            <Button icon="up" onClick={handleForward} />
+            <Button icon="sync" onClick={handleRefresh} />
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <Field.Input
+                <Input
                     defaultValue=""
                     value={path}
                     placeholder=""
