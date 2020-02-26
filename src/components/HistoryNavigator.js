@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Button, Field} from 'polestar-ui-kit'
 
-const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, path, ...rest }) => {
+const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, path, trimPath, ...rest }) => {
     const handleBack = e => {
         if (onBack) onBack(e)
     }
@@ -18,7 +18,8 @@ const HistoryNavigator = ({ onBack, onForward, onRefresh, onChange, onSubmit, pa
         if (onChange) onChange(value)
     }
     const handleSubmit = e => {
-        if (rest.explorePath) rest.explorePath(path)
+        if (rest.setPath) rest.setPath(trimPath)
+        if (rest.explorePath) rest.explorePath(trimPath)
         if (onSubmit) onSubmit(e)
     }
     return (
@@ -56,6 +57,7 @@ HistoryNavigator.propTypes = {
     onChange: PropTypes.func,
     onSubmit: PropTypes.func,
     path: PropTypes.string,
+    trimPath: PropTypes.string,
 }
 HistoryNavigator.defaultProps = {
     onBack: null,
@@ -64,6 +66,7 @@ HistoryNavigator.defaultProps = {
     onChange: null,
     onSubmit: null,
     path: '',
+    trimPath: '',
 }
 
 export default HistoryNavigator

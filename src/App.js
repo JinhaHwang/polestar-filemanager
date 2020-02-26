@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.less'
+import './styles/App.less'
 import FileExplorer from 'components/FileExplorer'
 import { fileExplorerType } from 'common/constants'
 
