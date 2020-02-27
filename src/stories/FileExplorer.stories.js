@@ -1,11 +1,8 @@
 // eslint-disable-next-line max-classes-per-file
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { fileExplorerType } from 'common/constants'
+import { fileExplorer } from 'common/constants'
 import FileExplorer from 'components/FileExplorer'
-import {createAction, handleActions} from "redux-actions";
-import { SELECT_TREE_NODE, selectTreeNode } from '../actions'
-import {fromJS, Map} from "immutable";
 
 export default {
     title: 'FileExplorer',
@@ -14,7 +11,7 @@ export default {
 
 export const directoryTreeType = () => (
     <FileExplorer
-        type={fileExplorerType.DIRECTORY_TREE}
+        type={fileExplorer.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}
         items={[
@@ -83,7 +80,7 @@ export const otherType = () => (
 export const multiExplorer = () => (
     <>
         <FileExplorer
-            type={fileExplorerType.DIRECTORY_TREE}
+            type={fileExplorer.TYPE.DIRECTORY_TREE}
             onSelect={action('selected')}
             onExpand={action('expanded')}
             items={[

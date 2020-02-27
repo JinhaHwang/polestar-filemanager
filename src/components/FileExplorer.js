@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Provider } from 'react-redux'
 import DirectoryTree from 'components/DirectoryTree'
-import { fileExplorerType } from 'common/constants'
+import { fileExplorer } from 'common/constants'
 import configureStore from 'stores/configureStore'
 import FileList from './FileList'
+import 'styles/components/FileExplorer.less'
 
 class FileExplorer extends Component {
     static propTypes = {
@@ -17,7 +18,7 @@ class FileExplorer extends Component {
     static defaultProps = {
         defaultClassName: 'FileExplorer',
         className: '',
-        type: fileExplorerType.DIRECTORY_TREE,
+        type: fileExplorer.TYPE.DIRECTORY_TREE,
     }
 
     static displayName = 'FileExplorer'
@@ -31,13 +32,13 @@ class FileExplorer extends Component {
         const { className, defaultClassName, type, ...rest } = this.props
         return (
             <Provider store={this.store}>
-                {type === fileExplorerType.DIRECTORY_TREE && (
+                {type === fileExplorer.TYPE.DIRECTORY_TREE && (
                     <DirectoryTree
                         className={classNames(defaultClassName, className)}
                         {...rest}
                     />
                 )}
-                {type === fileExplorerType.FILE_LIST && (
+                {type === fileExplorer.TYPE.FILE_LIST && (
                     <FileList
                         className={classNames(defaultClassName, className)}
                         {...rest}

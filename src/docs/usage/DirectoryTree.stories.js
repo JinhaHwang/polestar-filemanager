@@ -2,7 +2,9 @@
 import React from 'react'
 import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
-import DirectoryTree from '../../components/DirectoryTree'
+import DirectoryTree from 'components/DirectoryTree'
+import FileExplorer from 'components/FileExplorer'
+import { fileExplorer } from 'common/constants'
 
 export default {
     title: `${base}DirectoryTree`,
@@ -45,4 +47,30 @@ export const data = () => (
 )
 data.story = {
     name: 'data',
+}
+
+export const actuallyUse = () => (
+    <FileExplorer
+        type={fileExplorer.TYPE.DIRECTORY_TREE}
+        onSelect={action('selected')}
+        onExpand={action('expanded')}
+        items={[
+            { title: 'Expand to load', key: '0-1' },
+            {
+                title: 'Expand to load',
+                key: '0-2',
+                children: [
+                    {
+                        key: '0-2-1',
+                        title: 'hello',
+                        isLeaf: true,
+                    },
+                ],
+            },
+            { title: 'Tree Node', isLeaf: true, key: '0-3' },
+        ]}
+    />
+)
+actuallyUse.story = {
+    name: 'actually use'
 }

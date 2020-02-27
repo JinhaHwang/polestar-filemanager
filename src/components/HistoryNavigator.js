@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Input } from 'antd'
+import { Button, Field } from 'polestar-ui-kit'
 
 const HistoryNavigator = ({
     onBack,
@@ -37,12 +37,14 @@ const HistoryNavigator = ({
                 display: 'flex',
             }}
         >
-            <Button icon="left" onClick={handleBack} />
-            <Button icon="right" onClick={handleForward} />
-            <Button icon="up" onClick={handleForward} />
-            <Button icon="sync" onClick={handleRefresh} />
+            <div>
+                <Button icon="arrow-left" onClick={handleBack} />
+                <Button icon="arrow-right" onClick={handleForward} />
+                <Button icon="arrow-up" onClick={handleForward} />
+                <Button icon="refresh" onClick={handleRefresh} />
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <Input
+                <Field.Input
                     defaultValue=""
                     value={path}
                     placeholder=""

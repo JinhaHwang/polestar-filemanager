@@ -2,8 +2,8 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import HistoryNavigator from 'components/HistoryNavigator'
-import FileExplorer from "../components/FileExplorer"
-import {fileExplorerType} from "../common/constants"
+import { fileExplorer } from 'common/constants'
+import FileExplorer from '../components/FileExplorer'
 
 export default {
     title: 'HistoryNavigator',
@@ -21,7 +21,7 @@ export const historyNavigator = () => (
 
 export const fileExplorerTypeFileList = () => (
     <FileExplorer
-        type={fileExplorerType.FILE_LIST}
+        type={fileExplorer.TYPE.FILE_LIST}
         onBack={action('BACK')}
         onForward={action('FORWARD')}
         onRefresh={action('REFRESH')}
