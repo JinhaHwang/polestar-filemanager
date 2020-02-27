@@ -1,19 +1,31 @@
 // eslint-disable-next-line max-classes-per-file
 import React from 'react'
+import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
-import DirectoryTree from '../components/DirectoryTree'
+import DirectoryTree from '../../components/DirectoryTree'
 
 export default {
-    title: 'DirectoryTree',
+    title: `${base}DirectoryTree`,
     component: DirectoryTree,
 }
 
-export const directoryTreeTest = () => <DirectoryTree />
+export const index = () => <DirectoryTree />
+index.story = {
+    name: 'default',
+}
 
-export const directoryTreeProps = () => (
+export const events = () => (
     <DirectoryTree
         onSelect={action('selected')}
         onExpand={action('expanded')}
+    />
+)
+events.story = {
+    name: 'events',
+}
+
+export const data = () => (
+    <DirectoryTree
         items={[
             { title: 'Expand to load', key: '0-1' },
             {
@@ -31,3 +43,6 @@ export const directoryTreeProps = () => (
         ]}
     />
 )
+data.story = {
+    name: 'data',
+}

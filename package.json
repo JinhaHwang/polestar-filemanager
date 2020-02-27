@@ -80,6 +80,7 @@
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "paths.macro": "^2.0.2",
     "polestar-icons": "^0.9.62",
     "polestar-ui-kit": "^0.10.36",
     "prop-types": "^15.7.2",

@@ -13,11 +13,12 @@ class DirectoryTree extends React.Component {
     }
 
     static defaultProps = {
-        items: [
-            { title: 'Expand to load', key: '0' },
-            { title: 'Expand to load', key: '1' },
-            { title: 'Tree Node', key: '2', isLeaf: true },
-        ],
+        // items: [
+        //     { title: 'Expand to load', key: '0' },
+        //     { title: 'Expand to load', key: '1' },
+        //     { title: 'Tree Node', key: '2', isLeaf: true },
+        // ],
+        items: null,
         onSelect: null,
         onExpand: null,
     }
