@@ -1,12 +1,12 @@
 import React from 'react'
 import './styles/App.less'
 import FileExplorer from 'components/FileExplorer'
-import { fileExplorerType } from 'common/constants'
+import { fileExplorer } from 'common/constants'
 
 function App() {
     return (
         <div className="App">
-            <FileExplorer type={fileExplorerType.FILE_LIST} />
+            <FileExplorer type={fileExplorer.TYPE.FILE_LIST} />
         </div>
     )
 }
