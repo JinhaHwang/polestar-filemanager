@@ -7,7 +7,7 @@ import HistoryNavigatorContainer from 'containers/HistoryNavigator'
 import { fileExplorer } from 'common/constants'
 import FileExplorer from 'provider/FileExplorer'
 import base from 'paths.macro'
-import configureStore from '../../stores/configureStore'
+import configureStore from '../stores/configureStore'
 
 export default {
     title: `${base}HistoryNavigator`,

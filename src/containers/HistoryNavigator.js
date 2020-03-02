@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { explorePath, changePath, setPath } from 'actions'
+import { syncActions, asyncActions } from 'actions'
 import HistoryNavigator from '../components/HistoryNavigator'
 import { trimPathSelector, directoryTreePathSelector } from '../selectors'
 
@@ -18,9 +18,9 @@ const mapDispatchToProps = dispatch => {
         dispatch,
         ...bindActionCreators(
             {
-                explorePath,
-                changePath,
-                setPath,
+                explorePath: asyncActions.explorePath,
+                changePath: syncActions.changePath,
+                setPath: syncActions.setPath,
             },
             dispatch,
         ),

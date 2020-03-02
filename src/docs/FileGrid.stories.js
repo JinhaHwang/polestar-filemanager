@@ -22,3 +22,9 @@ overwriteHeight.story = {
 }
 
 // TODO events 와 data 스토리 작성
+export const events = () => {
+    const handleGridReady = params => {
+        console.log(params)
+    }
+    return <FileGrid onGridReady={handleGridReady} />
+}

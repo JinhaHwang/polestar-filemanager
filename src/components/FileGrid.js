@@ -10,6 +10,8 @@ class FileGrid extends Component {
         className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         defaultClassName: PropTypes.string,
         columnDefs: PropTypes.array,
+
+        onGridReady: PropTypes.func,
     }
 
     static defaultProps = {
@@ -17,6 +19,7 @@ class FileGrid extends Component {
         className: '',
         // 파일 목록 조회와 관련된 기본 컬럼정의
         columnDefs: fileGrid.DEFAULT_COLUMN_DEFS,
+        onGridReady: null,
     }
 
     static displayName = 'FileGrid'
@@ -29,6 +32,11 @@ class FileGrid extends Component {
         LicenseManager.setLicenseKey(
             'NKIA_MultiApp_1Devs11_June_2020__MTU5MTgzMDAwMDAwMA==f242cc947387ab63c084c10cfc03dc9b',
         )
+    }
+
+    handleGridReady = params => {
+        const { onGridReady, ...rest } = this.props
+        if (onGridReady) onGridReady(params)
     }
 
     render() {
