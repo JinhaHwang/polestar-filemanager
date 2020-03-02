@@ -3,7 +3,7 @@ import React from 'react'
 import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
 import DirectoryTree from 'components/DirectoryTree'
-import FileExplorer from 'components/FileExplorer'
+import FileExplorer from 'provider/FileExplorer'
 import { fileExplorer } from 'common/constants'
 
 export default {

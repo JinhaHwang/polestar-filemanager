@@ -2,13 +2,13 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { fileExplorer } from 'common/constants'
-import FileExplorer from 'components/FileExplorer'
+import FileExplorer from 'provider/FileExplorer'
 
 export default {
     title: 'FileExplorer',
     component: FileExplorer,
 }
-
+// TODO : 개선해서 docs 디렉터리로 넘기자
 export const directoryTreeType = () => (
     <FileExplorer
         type={fileExplorer.TYPE.DIRECTORY_TREE}

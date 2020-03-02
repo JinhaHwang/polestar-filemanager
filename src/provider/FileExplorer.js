@@ -5,9 +5,13 @@ import { Provider } from 'react-redux'
 import DirectoryTree from 'components/DirectoryTree'
 import { fileExplorer } from 'common/constants'
 import configureStore from 'stores/configureStore'
-import FileList from './FileList'
+import FileList from '../components/FileList'
 import 'styles/components/FileExplorer.less'
 
+/**
+ * store를 connect하는 container를 이용하려면
+ * store를 제공하는 Provider 아래에서 사용해야 한다
+ */
 class FileExplorer extends Component {
     static propTypes = {
         className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),

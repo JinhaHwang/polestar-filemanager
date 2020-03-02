@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/App.less'
-import FileExplorer from 'components/FileExplorer'
+import FileExplorer from 'provider/FileExplorer'
 import { fileExplorer } from 'common/constants'
 
 function App() {
