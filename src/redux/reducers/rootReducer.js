@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux-immutable'
 import { Record } from 'immutable'
+import undoable from 'redux-undo'
 import directoryTreeReducer from './directoryTreeReducer'
+import { syncActions } from '../actions'
 
 // redux 상태 트리의 키를 각각 undefined 로 초기화 해줘야
 // 키에 해당하는 서브 리듀서에서 초기화를 진행하게 된다.
@@ -12,7 +14,11 @@ const InitRecord = Record({
 // redux-immutable모듈의 combineReducers는 두번째 인자로 getDefaultState 함수를 받는다(여기선 Record로 만든 Immutable 생성자)
 export default combineReducers(
     {
-        directoryTree: directoryTreeReducer,
+        directoryTree: undoable(directoryTreeReducer, {
+            limit: 10,
+            undoType: syncActions.HISTORY_UNDO,
+            redoType: syncActions.HISTORY_REDO,
+        }),
     },
     InitRecord,
 )

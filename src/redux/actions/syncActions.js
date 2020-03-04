@@ -8,3 +8,9 @@ export const setPath = createAction(SET_PATH)
 export const CHANGE_PATH = 'CHANGE_PATH'
 export const changePath = createAction(CHANGE_PATH)
 
+// history 관련 액션
+export const HISTORY_UNDO = 'HISTORY_UNDO'
+export const historyUndo = createAction(HISTORY_UNDO)
+
+export const HISTORY_REDO = 'HISTORY_REDO'
+export const historyRedo = createAction(HISTORY_REDO)
