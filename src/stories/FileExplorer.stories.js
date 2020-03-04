@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { fileExplorer } from 'common/constants'
+import { constFileExplorer } from 'common/constants'
 import FileExplorer from 'provider/FileExplorer'
 
 export default {
@@ -11,7 +11,7 @@ export default {
 // TODO : 개선해서 docs 디렉터리로 넘기자
 export const directoryTreeType = () => (
     <FileExplorer
-        type={fileExplorer.TYPE.DIRECTORY_TREE}
+        type={constFileExplorer.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}
         items={[
@@ -80,7 +80,7 @@ export const otherType = () => (
 export const multiExplorer = () => (
     <>
         <FileExplorer
-            type={fileExplorer.TYPE.DIRECTORY_TREE}
+            type={constFileExplorer.TYPE.DIRECTORY_TREE}
             onSelect={action('selected')}
             onExpand={action('expanded')}
             items={[

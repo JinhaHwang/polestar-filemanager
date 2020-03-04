@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Grid } from 'polestar-ui-kit'
 import { LicenseManager } from 'ag-grid-enterprise/main'
-import { fileGrid } from 'common/constants'
+import { constFileGrid } from 'common/constants'
 
 class FileGrid extends Component {
     static propTypes = {
         className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         defaultClassName: PropTypes.string,
         columnDefs: PropTypes.array,
-
+        items: PropTypes.array,
+        rowData: PropTypes.array,
         onGridReady: PropTypes.func,
     }
 
@@ -18,7 +19,9 @@ class FileGrid extends Component {
         defaultClassName: 'FileGrid',
         className: '',
         // 파일 목록 조회와 관련된 기본 컬럼정의
-        columnDefs: fileGrid.DEFAULT_COLUMN_DEFS,
+        columnDefs: constFileGrid.DEFAULT_COLUMN_DEFS,
+        items: null,
+        rowData: null,
         onGridReady: null,
     }
 
@@ -40,7 +43,16 @@ class FileGrid extends Component {
     }
 
     render() {
-        const { className, defaultClassName, columnDefs, ...rest } = this.props
+        const {
+            className,
+            defaultClassName,
+            columnDefs,
+
+            items,
+            rowData,
+
+            ...rest
+        } = this.props
         return (
             <Grid
                 height={300}
@@ -50,6 +62,9 @@ class FileGrid extends Component {
                 className={classNames(defaultClassName, className)}
                 ref={this.gridRef}
                 columnDefs={columnDefs}
+                // 원래 ag-grid-react에서는 rowData가 props로 넘어가야하는데
+                // polestar-ui-kit에 구현된 Grid는 items를 props로 넘기면 api.setRowData(props.items)를 내부적으로 호출하게 돼있음
+                items={items || rowData}
             />
         )
     }

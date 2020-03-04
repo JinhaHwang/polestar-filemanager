@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import FileList from 'components/FileList'
 import configureStore from 'redux/stores/configureStore'
 import FileExplorer from "provider/FileExplorer"
-import { fileExplorer } from "common/constants"
+import { constFileExplorer } from "common/constants"
 
 
 export default {
@@ -30,7 +30,7 @@ index.story = {
 
 
 export const actuallyUse = () => (
-    <FileExplorer type={fileExplorer.TYPE.FILE_LIST} />
+    <FileExplorer type={constFileExplorer.TYPE.FILE_LIST} />
 )
 actuallyUse.story = {
     name: 'actually use'
