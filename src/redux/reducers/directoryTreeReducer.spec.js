@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 import { fromJS, Map } from 'immutable'
-import { syncActions } from 'actions'
+import { syncActions } from 'redux/actions'
 
 test('hello', () => {
     // toBe 매쳐는 primitive 비교

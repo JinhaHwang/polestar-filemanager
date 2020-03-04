@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Provider } from 'react-redux'
 import DirectoryTree from 'components/DirectoryTree'
 import { fileExplorer } from 'common/constants'
-import configureStore from 'stores/configureStore'
+import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/FileList'
 import 'styles/components/FileExplorer.less'
 

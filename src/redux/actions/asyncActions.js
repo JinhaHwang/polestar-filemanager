@@ -9,7 +9,3 @@ export const explorePath = path => (dispatch, getState) => {
     dispatch(myThunk())
 }
 
-export default {
-    myThunk,
-    explorePath,
-}

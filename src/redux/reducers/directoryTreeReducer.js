@@ -1,9 +1,9 @@
 import { handleActions, combineActions } from 'redux-actions'
 import { fromJS, Map } from 'immutable'
-import { syncActions, asyncActions } from "actions"
+import { syncActions, asyncActions } from "redux/actions"
 
 
-const derectoryTreeReducer = handleActions(
+const directoryTreeReducer = handleActions(
     {
         [syncActions.selectTreeNode]: (state, action) => {
             return state.set('selectedNode', fromJS(action.payload))
@@ -17,4 +17,4 @@ const derectoryTreeReducer = handleActions(
     }),
 )
 
-export default derectoryTreeReducer
+export default directoryTreeReducer

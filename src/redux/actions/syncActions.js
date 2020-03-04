@@ -8,8 +8,3 @@ export const setPath = createAction(SET_PATH)
 export const CHANGE_PATH = 'CHANGE_PATH'
 export const changePath = createAction(CHANGE_PATH)
 
-export default {
-    selectTreeNode,
-    setPath,
-    changePath,
-}

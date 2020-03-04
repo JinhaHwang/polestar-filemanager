@@ -3,7 +3,7 @@ import React from 'react'
 import base from 'paths.macro'
 import { Provider } from 'react-redux'
 import FileList from 'components/FileList'
-import configureStore from 'stores/configureStore'
+import configureStore from 'redux/stores/configureStore'
 import FileExplorer from "provider/FileExplorer"
 import { fileExplorer } from "common/constants"
 

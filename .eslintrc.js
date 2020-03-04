@@ -16,7 +16,7 @@ module.exports = {
         // 'prefer-destructuring': 'off',
         'no-console': 'off',
         // 'no-undef': 'off',
-        // 'no-unused-vars': 'off',
+        'no-unused-vars': 'warn',
         // 'react/prop-types': 'off',
         'react/forbid-prop-types': 'off',
         'react/default-props-match-prop-types': 'off',
