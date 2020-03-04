@@ -30,8 +30,8 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-curly-brace-presence': 'off',
 
-        'react-hooks/rules-of-hooks': 'off',
-        'react-hooks/exhaustive-deps': 'off',
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
 
         'jest/no-disabled-tests': 'warn',
         'jest/no-focused-tests': 'error',
