@@ -13,6 +13,7 @@ module.exports = {
         semi: ['error', 'never'],
         'import/no-cycle': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'import/prefer-default-export': 'off',
         // 'prefer-destructuring': 'off',
         'no-console': 'off',
         // 'no-undef': 'off',

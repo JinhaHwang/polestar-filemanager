@@ -4,4 +4,3 @@ export const TYPE = {
     FILE_EXPLORER: 'FileExplorer',
 }
 
-export const a = {}
