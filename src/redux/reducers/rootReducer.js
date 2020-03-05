@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux-immutable'
 import { Record } from 'immutable'
-import undoable from 'redux-undo'
+import undoable, {includeAction} from 'redux-undo'
 import directoryTreeReducer from './directoryTreeReducer'
 import { syncActions } from '../actions'
 
@@ -15,9 +15,10 @@ const InitRecord = Record({
 export default combineReducers(
     {
         directoryTree: undoable(directoryTreeReducer, {
-            limit: 10,
             undoType: syncActions.HISTORY_UNDO,
             redoType: syncActions.HISTORY_REDO,
+            filter: includeAction([syncActions.setPath, syncActions.changePath]),
+            limit: 10,
         }),
     },
     InitRecord,

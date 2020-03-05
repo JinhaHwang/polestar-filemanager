@@ -23,20 +23,36 @@ overwriteHeight.story = {
     name: 'overwrite height',
 }
 
-export const defaultRowData = () => (
-    <FileGrid
-        rowData={[
-            {
-                name: 'test',
-                mode: '-rw-r--r--',
-                owner: 'hwangjinha',
-                group: 'staff',
-                size: '75B',
-                modified: moment(),
-            },
-        ]}
-    />
-)
+export const rowData = () => {
+    const addIsDirectoryKeyByMode = ({ mode, ...file }) => ({ ...file, mode, isDirectory: mode.charAt(0) === 'd'})
+    const data = [
+        {
+            name: 'test',
+            mode: '-rw-r--r--',
+            owner: 'hwangjinha',
+            group: 'staff',
+            size: '75B',
+            modified: moment(),
+        },
+        {
+            name: 'test2',
+            mode: 'drwxr-xr-x',
+            owner: 'hwangjinha',
+            group: 'staff',
+            size: '75B',
+            modified: moment(),
+        }
+    ]
+
+    return (
+        <FileGrid
+            rowData={data.map(addIsDirectoryKeyByMode)}
+        />
+    )
+}
+rowData.story = {
+    name: 'row data',
+}
 
 // TODO events 와 data 스토리 작성
 export const events = () => {
