@@ -13,7 +13,6 @@ class FileGrid extends Component {
         items: PropTypes.array,
         rowData: PropTypes.array,
         onGridReady: PropTypes.func,
-        forwardRef: oneOfType([PropTypes.object, PropTypes.func])
     }
 
     static defaultProps = {
@@ -24,14 +23,13 @@ class FileGrid extends Component {
         items: null,
         rowData: null,
         onGridReady: null,
-        forwardRef: null,
     }
 
     static displayName = 'FileGrid'
 
     constructor(props) {
         super(props)
-        this.gridRef = props.forwardRef
+        this.gridRef = React.createRef()
 
         // ag-grid 라이센스 등록
         LicenseManager.setLicenseKey(
@@ -72,7 +70,4 @@ class FileGrid extends Component {
     }
 }
 
-export default React.forwardRef((props, ref) => (<FileGrid
-    {...props}
-    forwardRef={ref}
-/>))
+export default FileGrid

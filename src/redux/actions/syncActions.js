@@ -14,3 +14,9 @@ export const historyUndo = createAction(HISTORY_UNDO)
 
 export const HISTORY_REDO = 'HISTORY_REDO'
 export const historyRedo = createAction(HISTORY_REDO)
+
+export const DIRECTORY_TREE_UNDO = 'DIRECTORY_TREE_UNDO'
+export const directoryTreeUndo = createAction(DIRECTORY_TREE_UNDO)
+
+export const DIRECTORY_TREE_REDO = 'DIRECTORY_TREE_REDO'
+export const directoryTreeRedo = createAction(DIRECTORY_TREE_REDO)

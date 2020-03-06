@@ -4,9 +4,10 @@ import base from 'paths.macro'
 import { Provider } from 'react-redux'
 import FileList from 'components/FileList'
 import configureStore from 'redux/stores/configureStore'
-import FileExplorer from "provider/FileExplorer"
-import { constFileExplorer } from "common/constants"
-
+import FileExplorer from 'provider/FileExplorer'
+import { constFileExplorer } from 'common/constants'
+import { fromJS } from 'immutable'
+import rootReducer from '../redux/reducers/rootReducer'
 
 export default {
     title: `${base}FileList`,
@@ -26,12 +27,30 @@ index.story = {
     name: 'default',
 }
 
-// TODO events 와 data 스토리 작성
+export const transmitReducer = () => {
+    // const store = configureStore(
+    //     rootReducer(
+    //         fromJS({
+    //             directoryTree: {
+    //                 path: 'hello man ',
+    //             },
+    //         }),
+    //     ),
+    // )
+    // todo: 리듀서로 props를 받아서 초기 상태를 만들어서 스토어를 구성해야함
+    const store = configureStore()
+    return (
+        <Provider store={store}>
+            <FileList />
+        </Provider>
+    )
+}
 
+// TODO events 와 data 스토리 작성
 
 export const actuallyUse = () => (
     <FileExplorer type={constFileExplorer.TYPE.FILE_LIST} />
 )
 actuallyUse.story = {
-    name: 'actually use'
+    name: 'actually use',
 }
