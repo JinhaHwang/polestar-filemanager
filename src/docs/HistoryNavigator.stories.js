@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { Provider } from 'react-redux'
 import { action } from '@storybook/addon-actions'
 import HistoryNavigator from 'components/HistoryNavigator'
-import HistoryNavigatorContainer from 'containers/HistoryNavigator'
+import HistoryNavigatorContainer from 'components/HistoryNavigatorContainer'
 import { constFileExplorer } from 'common/constants'
-import FileExplorer from 'provider/FileExplorer'
+import App from 'provider/App'
 import base from 'paths.macro'
 import configureStore from '../redux/stores/configureStore'
 
@@ -51,7 +51,7 @@ useStore.story = {
 }
 
 export const useProvider = () => (
-    <FileExplorer
+    <App
         type={constFileExplorer.TYPE.FILE_LIST}
         onBack={action('BACK')}
         onForward={action('FORWARD')}

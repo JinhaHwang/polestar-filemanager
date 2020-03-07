@@ -4,10 +4,12 @@ import base from 'paths.macro'
 import { Provider } from 'react-redux'
 import FileList from 'components/FileList'
 import configureStore from 'redux/stores/configureStore'
-import FileExplorer from 'provider/FileExplorer'
+import App from 'provider/App'
 import { constFileExplorer } from 'common/constants'
 import { fromJS } from 'immutable'
 import rootReducer from '../redux/reducers/rootReducer'
+import directoryTreeReducer from "../redux/reducers/directoryTreeReducer"
+import {syncActions} from "../redux/actions"
 
 export default {
     title: `${base}FileList`,
@@ -27,30 +29,36 @@ index.story = {
     name: 'default',
 }
 
-export const transmitReducer = () => {
-    // const store = configureStore(
-    //     rootReducer(
-    //         fromJS({
-    //             directoryTree: {
-    //                 path: 'hello man ',
-    //             },
-    //         }),
-    //     ),
-    // )
-    // todo: 리듀서로 props를 받아서 초기 상태를 만들어서 스토어를 구성해야함
+export const initStoreByProps = () => {
+    const optionProps = {
+        directoryTree: {
+            items: [1, 3, 5],
+        },
+        historyNavigator: {
+            path: '/a/b/c'
+        }
+    }
     const store = configureStore()
+    store.dispatch(syncActions.initDirectoryTree(optionProps.directoryTree))
+    store.dispatch(syncActions.initHistoryNavigator(optionProps.historyNavigator))
     return (
         <Provider store={store}>
             <FileList />
         </Provider>
     )
 }
+initStoreByProps.story = {
+    name: 'init store by props'
+}
 
 // TODO events 와 data 스토리 작성
 
-export const actuallyUse = () => (
-    <FileExplorer type={constFileExplorer.TYPE.FILE_LIST} />
+export const stateIsolated = () => (
+    <>
+        <App type={constFileExplorer.TYPE.FILE_LIST} />
+        <App type={constFileExplorer.TYPE.FILE_LIST} />
+    </>
 )
-actuallyUse.story = {
-    name: 'actually use',
+stateIsolated.story = {
+    name: 'state isolated',
 }

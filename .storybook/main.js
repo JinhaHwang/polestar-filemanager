@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../src/docs/**/*.stories.js'],
+    stories: ['../src/**/*.stories.js'],
     // stories: ['../src/**/*.stories.js'],
     addons: [
         {

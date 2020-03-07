@@ -3,7 +3,7 @@ import React from 'react'
 import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
 import DirectoryTree from 'components/DirectoryTree'
-import FileExplorer from 'provider/FileExplorer'
+import App from 'provider/App'
 import { constFileExplorer } from 'common/constants'
 
 export default {
@@ -50,7 +50,7 @@ data.story = {
 }
 
 export const actuallyUse = () => (
-    <FileExplorer
+    <App
         type={constFileExplorer.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}

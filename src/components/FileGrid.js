@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes, {oneOfType} from 'prop-types'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Grid } from 'polestar-ui-kit'
 import { LicenseManager } from 'ag-grid-enterprise/main'

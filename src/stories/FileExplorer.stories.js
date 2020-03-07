@@ -2,15 +2,15 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { constFileExplorer } from 'common/constants'
-import FileExplorer from 'provider/FileExplorer'
+import App from 'provider/App'
 
 export default {
     title: 'FileExplorer',
-    component: FileExplorer,
+    component: App,
 }
 // TODO : 개선해서 docs 디렉터리로 넘기자
 export const directoryTreeType = () => (
-    <FileExplorer
+    <App
         type={constFileExplorer.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}
@@ -33,7 +33,7 @@ export const directoryTreeType = () => (
 )
 
 export const defaultType = () => (
-    <FileExplorer
+    <App
         onSelect={action('selected')}
         onExpand={action('expanded')}
         items={[
@@ -55,7 +55,7 @@ export const defaultType = () => (
 )
 
 export const otherType = () => (
-    <FileExplorer
+    <App
         type="NO_FOUND"
         onSelect={action('selected')}
         onExpand={action('expanded')}
@@ -79,7 +79,7 @@ export const otherType = () => (
 
 export const multiExplorer = () => (
     <>
-        <FileExplorer
+        <App
             type={constFileExplorer.TYPE.DIRECTORY_TREE}
             onSelect={action('selected')}
             onExpand={action('expanded')}
@@ -99,7 +99,7 @@ export const multiExplorer = () => (
                 { title: 'Tree Node', isLeaf: true, key: '0-3' },
             ]}
         />
-        <FileExplorer
+        <App
             type="DirectoryTree"
             onSelect={action('selected')}
             onExpand={action('expanded')}
@@ -123,5 +123,5 @@ export const multiExplorer = () => (
 )
 
 export const myStoryFunc = () => {
-    return <FileExplorer />
+    return <App />
 }
