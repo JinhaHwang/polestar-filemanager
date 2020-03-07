@@ -2,7 +2,7 @@
 import React from 'react'
 import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
-import DirectoryTree from 'components/DirectoryTree'
+import DirectoryTree from 'components/organisms/DirectoryTree'
 import App from 'provider/App'
 import { constFileExplorer } from 'common/constants'
 

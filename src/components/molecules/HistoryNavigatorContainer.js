@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { syncActions, asyncActions } from 'redux/actions'
 import HistoryNavigator from './HistoryNavigator'
-import { trimPathSelector, directoryTreePathSelector } from '../redux/selectors'
+import { trimPathSelector, directoryTreePathSelector } from '../../redux/selectors'
 
 const mapStateToProps = state => {
     return {

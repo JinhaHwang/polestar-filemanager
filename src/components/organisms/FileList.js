@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import HistoryNavigatorContainer from './HistoryNavigatorContainer'
-import FileGrid from './FileGrid'
+import HistoryNavigatorContainer from '../molecules/HistoryNavigatorContainer'
+import FileGrid from '../molecules/FileGrid'
 
 class FileList extends Component {
     static propTypes = {

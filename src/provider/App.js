@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Provider } from 'react-redux'
-import DirectoryTree from 'components/DirectoryTree'
+import DirectoryTree from 'components/organisms/DirectoryTree'
 import { constFileExplorer } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
-import FileList from '../components/FileList'
+import FileList from '../components/organisms/FileList'
 import { syncActions } from '../redux/actions'
 import 'styles/components/FileExplorer.less'
+import FileExplorer from "../components/organisms/FileExplorer"
 
 /**
  * store를 connect하는 container를 이용하려면
@@ -58,12 +59,16 @@ class App extends Component {
             type,
             directoryTree,
             historyNavigator,
+            fileList,
             ...rest
         } = this.props
         return (
             <Provider store={this.store}>
                 {type === constFileExplorer.TYPE.FILE_EXPLORER && (
-                    <div></div>
+                    <FileExplorer
+                        className={classNames(defaultClassName, className)}
+                        {...rest}
+                    />
                 )}
                 {type === constFileExplorer.TYPE.DIRECTORY_TREE && (
                     <DirectoryTree

@@ -3,8 +3,6 @@
 config/
 public/
 scripts/
-src/**/*.stories.js
+src/
 build/
 .prettierrc.js
-.eslintrc.js
-.eslintignore
