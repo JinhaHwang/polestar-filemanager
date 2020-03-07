@@ -1,19 +1,26 @@
-import React, {useRef} from 'react'
-
+import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import HistoryNavigatorContainer from '../molecules/HistoryNavigatorContainer'
-import FileGrid from '../molecules/FileGrid'
+import FileGridContainer from '../molecules/FileGridContainer'
 
 const FileList = props => {
-    const gridRef = useRef()
+    const { defaultClassName, className } = props
     return (
-        <>
+        <div className={classNames(defaultClassName, className)}>
             <HistoryNavigatorContainer />
-            <FileGrid ref={gridRef} />
-        </>
+            <FileGridContainer />
+        </div>
     )
 }
 
 FileList.propTypes = {
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    defaultClassName: PropTypes.string,
+}
+FileList.defaultProps = {
+    defaultClassName: 'FileList',
+    className: '',
 }
 
 export default FileList

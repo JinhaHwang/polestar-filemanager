@@ -24,8 +24,8 @@ export const selectTreeNode = createAction(SELECT_TREE_NODE)
 export const INIT_FILE_LIST = 'INIT_FILE_LIST'
 export const initFileList = createAction(INIT_FILE_LIST)
 
-export const SET_FILE_LIST = 'SET_FILE_LIST'
-export const setFileList = createAction(SET_FILE_LIST)
+export const SET_FILE_LIST_ITEMS = 'SET_FILE_LIST_ITEMS'
+export const setFileListItems = createAction(SET_FILE_LIST_ITEMS)
 
 // undo redo 관련 액션
 export const HISTORY_NAVIGATOR_UNDO = 'HISTORY_NAVIGATOR_UNDO'

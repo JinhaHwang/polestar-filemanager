@@ -1,74 +1,81 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Tree } from 'antd'
 import { Field } from 'polestar-ui-kit'
+import classNames from 'classnames'
 
 const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
-class DirectoryTree extends React.Component {
-    static propTypes = {
-        items: PropTypes.array,
-        onSelect: PropTypes.func,
-        onExpand: PropTypes.func,
-    }
-
-    static defaultProps = {
-        // items: [
-        //     { title: 'Expand to load', key: '0' },
-        //     { title: 'Expand to load', key: '1' },
-        //     { title: 'Tree Node', key: '2', isLeaf: true },
-        // ],
-        items: null,
-        onSelect: null,
-        onExpand: null,
-    }
-
-    onSelect = (keys, event) => {
-        const { onSelect } = this.props
+const DirectoryTree = props => {
+    const { defaultClassName, className, items, ...rest } = props
+    const handleSelect = useCallback((keys, event) => {
+        const { onSelect } = rest
         if (onSelect) onSelect(keys, event)
-    }
+    }, [])
 
-    onExpand = (keys, event) => {
-        const { onExpand } = this.props
+    const handleExpand = useCallback((keys, event) => {
+        const { onExpand } = rest
         if (onExpand) onExpand(keys, event)
-    }
+    }, [])
 
-    renderTreeNodes = data =>
-        data
-            ? data.map(item => {
-                  if (item.children) {
+    const renderTreeNodes = useCallback(
+        data =>
+            data
+                ? data.map(item => {
+                      if (item.children) {
+                          return (
+                              <TreeNode
+                                  title={item.title}
+                                  key={item.key}
+                                  dataRef={item}
+                              >
+                                  {renderTreeNodes(item.children)}
+                              </TreeNode>
+                          )
+                      }
                       return (
-                          <TreeNode
-                              title={item.title}
-                              key={item.key}
-                              dataRef={item}
-                          >
-                              {this.renderTreeNodes(item.children)}
-                          </TreeNode>
+                          <TreeNode key={item.key} {...item} dataRef={item} />
                       )
-                  }
-                  return <TreeNode key={item.key} {...item} dataRef={item} />
-              })
-            : null
+                  })
+                : null,
+        [],
+    )
 
-    render() {
-        const { items, ...rest } = this.props
-        return (
-            <>
-                <AntDirectoryTree
-                    {...rest}
-                    multiple
-                    defaultExpandAll
-                    onSelect={this.onSelect}
-                    onExpand={this.onExpand}
-                    expandAction="doubleClick"
-                >
-                    {this.renderTreeNodes(items)}
-                </AntDirectoryTree>
-                <Field.Input />
-            </>
-        )
-    }
+    return (
+        <div className={classNames(defaultClassName, className)}>
+            <AntDirectoryTree
+                {...rest}
+                multiple
+                defaultExpandAll
+                onSelect={handleSelect}
+                onExpand={handleExpand}
+                expandAction="doubleClick"
+            >
+                {renderTreeNodes(items)}
+            </AntDirectoryTree>
+            <Field.Input />
+        </div>
+    )
+}
+
+DirectoryTree.propTypes = {
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    defaultClassName: PropTypes.string,
+    items: PropTypes.array,
+    onSelect: PropTypes.func,
+    onExpand: PropTypes.func,
+}
+DirectoryTree.defaultProps = {
+    defaultClassName: 'DirectoryTree',
+    className: '',
+    // items: [
+    //     { title: 'Expand to load', key: '0' },
+    //     { title: 'Expand to load', key: '1' },
+    //     { title: 'Tree Node', key: '2', isLeaf: true },
+    // ],
+    items: null,
+    onSelect: null,
+    onExpand: null,
 }
 
 export default DirectoryTree

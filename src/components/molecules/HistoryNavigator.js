@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Field } from 'polestar-ui-kit'
 
@@ -12,36 +12,50 @@ const HistoryNavigator = ({
     trimPath,
     ...rest
 }) => {
-    const handleBack = e => {
+    const handleBack = useCallback(e => {
+        if (rest.historyBack) rest.historyBack()
         if (onBack) onBack(e)
-    }
-    const handleForward = e => {
+    }, [])
+
+    const handleForward = useCallback(e => {
+        if (rest.historyForward) rest.historyForward()
         if (onForward) onForward(e)
-    }
-    const handleRefresh = e => {
+    }, [])
+    const handleRefresh = useCallback(e => {
         if (onRefresh) onRefresh(e)
-    }
-    const handleChange = e => {
+    }, [])
+    const handleChange = useCallback(e => {
         const { value } = e.target
         if (rest.changePath) rest.changePath(value)
         if (onChange) onChange(value)
-    }
-    const handleSubmit = e => {
-        if (rest.setPath) rest.setPath(trimPath)
-        if (rest.explorePath) rest.explorePath(trimPath)
-        if (onSubmit) onSubmit(e)
-    }
+    }, [])
+    const handleSubmit = useCallback(
+        e => {
+            if (path.length > 0 && trimPath.length > 0) {
+                if (rest.setPath) rest.setPath(trimPath)
+                if (rest.explorePath) rest.explorePath(trimPath)
+                if (onSubmit) onSubmit(e)
+            }
+        },
+        [path, trimPath],
+    )
     return (
         <div
             style={{
                 display: 'flex',
+                height: 32,
+                marginBottom: 3,
             }}
         >
             <div>
-                <Button icon="arrow-left" onClick={handleBack} />
-                <Button icon="arrow-right" onClick={handleForward} />
-                <Button icon="arrow-up" onClick={handleForward} />
-                <Button icon="refresh" onClick={handleRefresh} />
+                <Button icon="arrow-left" onClick={handleBack} size="large" />
+                <Button
+                    icon="arrow-right"
+                    onClick={handleForward}
+                    size="large"
+                />
+                <Button icon="arrow-up" onClick={handleForward} size="large" />
+                <Button icon="refresh" onClick={handleRefresh} size="large" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
                 <Field.Input

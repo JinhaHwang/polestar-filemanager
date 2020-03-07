@@ -5,13 +5,13 @@ import {initReducerCreator} from "./helper/commonReducer"
 
 
 const initState = fromJS({
-    items: [],
+    items: null,
 })
 
 const fileListReducer = handleActions(
     {
         [syncActions.initFileList]: initReducerCreator(initState),
-        [syncActions.setFileList]: (state, action) => {
+        [syncActions.setFileListItems]: (state, action) => {
             return state.set('items', fromJS(action.payload))
         },
     },

@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     static defaultProps = {
-        defaultClassName: 'FileExplorer',
+        defaultClassName: 'FileExplorerWrap',
         className: '',
         type: constApp.TYPE.FILE_EXPLORER,
         directoryTree: null,
@@ -33,7 +33,7 @@ class App extends Component {
         fileList: null,
     }
 
-    static displayName = 'FileExplorer'
+    static displayName = 'FileExplorerWrap'
 
     constructor(props) {
         super(props)
@@ -71,9 +71,7 @@ class App extends Component {
                     {type === constApp.TYPE.DIRECTORY_TREE && (
                         <DirectoryTree {...rest} />
                     )}
-                    {type === constApp.TYPE.FILE_LIST && (
-                        <FileList {...rest} />
-                    )}
+                    {type === constApp.TYPE.FILE_LIST && <FileList {...rest} />}
                 </div>
             </Provider>
         )

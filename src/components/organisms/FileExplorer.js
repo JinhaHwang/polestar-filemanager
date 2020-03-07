@@ -1,25 +1,35 @@
 import React from 'react'
+import classNames from "classnames"
+import PropTypes from "prop-types"
 import DirectoryTree from "./DirectoryTree"
-import FileList from "./FileList"
-import FileGrid from "../molecules/FileGrid"
+import FileGridContainer from "../molecules/FileGridContainer"
 import HistoryNavigatorContainer from "../molecules/HistoryNavigatorContainer"
 
 const FileExplorer = props => {
+    const {
+        defaultClassName, className,
+    } = props
     return (
-        <div>
+        <div className={classNames(defaultClassName, className)}>
             <HistoryNavigatorContainer />
-            <div style={{
-                display: 'flex',
-            }}>
-                <div style={{
-                    flex: 1,
-                }}>
+            <div
+                style={{
+                    display: 'flex',
+                }}
+            >
+                <div
+                    style={{
+                        flex: 1,
+                    }}
+                >
                     <DirectoryTree />
                 </div>
-                <div style={{
-                    flex: 4,
-                }}>
-                    <FileGrid />
+                <div
+                    style={{
+                        flex: 4,
+                    }}
+                >
+                    <FileGridContainer />
                 </div>
             </div>
         </div>
@@ -27,7 +37,12 @@ const FileExplorer = props => {
 }
 
 FileExplorer.propTypes = {
-
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    defaultClassName: PropTypes.string,
+}
+FileExplorer.defaultProps = {
+    defaultClassName: 'FileExplorer',
+    className: '',
 }
 
 export default FileExplorer

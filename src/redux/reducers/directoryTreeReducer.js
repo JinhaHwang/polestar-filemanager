@@ -1,11 +1,10 @@
 import { handleActions, combineActions } from 'redux-actions'
 import { fromJS, Map } from 'immutable'
-import { syncActions, asyncActions } from "redux/actions"
-import {initReducerCreator} from "./helper/commonReducer"
-
+import { syncActions, asyncActions } from 'redux/actions'
+import { initReducerCreator } from './helper/commonReducer'
 
 const initState = fromJS({
-    items: [],
+    items: null,
     selectedNode: null,
 })
 

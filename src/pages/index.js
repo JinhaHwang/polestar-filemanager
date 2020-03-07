@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '../styles/index.less'
-import App from "../provider/App"
+import App from '../provider/App'
 import * as serviceWorker from '../serviceWorker'
 
 ReactDOM.render(<App />, document.getElementById('root'))
