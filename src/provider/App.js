@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Provider } from 'react-redux'
 import DirectoryTree from 'components/organisms/DirectoryTree'
-import { constFileExplorer } from 'common/constants'
+import { constApp } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/organisms/FileList'
 import { syncActions } from '../redux/actions'
 import 'styles/components/FileExplorer.less'
-import FileExplorer from "../components/organisms/FileExplorer"
+import FileExplorer from '../components/organisms/FileExplorer'
 
 /**
  * store를 connect하는 container를 이용하려면
@@ -27,7 +27,7 @@ class App extends Component {
     static defaultProps = {
         defaultClassName: 'FileExplorer',
         className: '',
-        type: constFileExplorer.TYPE.FILE_EXPLORER,
+        type: constApp.TYPE.FILE_EXPLORER,
         directoryTree: null,
         historyNavigator: null,
         fileList: null,
@@ -64,24 +64,17 @@ class App extends Component {
         } = this.props
         return (
             <Provider store={this.store}>
-                {type === constFileExplorer.TYPE.FILE_EXPLORER && (
-                    <FileExplorer
-                        className={classNames(defaultClassName, className)}
-                        {...rest}
-                    />
-                )}
-                {type === constFileExplorer.TYPE.DIRECTORY_TREE && (
-                    <DirectoryTree
-                        className={classNames(defaultClassName, className)}
-                        {...rest}
-                    />
-                )}
-                {type === constFileExplorer.TYPE.FILE_LIST && (
-                    <FileList
-                        className={classNames(defaultClassName, className)}
-                        {...rest}
-                    />
-                )}
+                <div className={classNames(defaultClassName, className)}>
+                    {type === constApp.TYPE.FILE_EXPLORER && (
+                        <FileExplorer {...rest} />
+                    )}
+                    {type === constApp.TYPE.DIRECTORY_TREE && (
+                        <DirectoryTree {...rest} />
+                    )}
+                    {type === constApp.TYPE.FILE_LIST && (
+                        <FileList {...rest} />
+                    )}
+                </div>
             </Provider>
         )
     }

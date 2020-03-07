@@ -4,6 +4,8 @@ import undoable, { includeAction, excludeAction } from 'redux-undo'
 import directoryTreeReducer from './directoryTreeReducer'
 import { syncActions } from '../actions'
 import historyNavigatorReducer from './historyNavigatorReducer'
+import fileListReducer from "./fileListReducer"
+import { constApp } from '../../common/constants'
 
 // redux 상태 트리의 키를 각각 undefined 로 초기화 해줘야
 // 키에 해당하는 서브 리듀서에서 초기화를 진행하게 된다.
@@ -19,20 +21,20 @@ export default combineReducers(
             undoType: syncActions.DIRECTORY_TREE_UNDO,
             redoType: syncActions.DIRECTORY_TREE_REDO,
             filter: includeAction([
-                syncActions.SELECT_TREE_NODE,
+                syncActions.SET_DIRECTORY_TREE,
                 // syncActions.CHANGE_PATH,
             ]),
-            limit: 10,
+            limit: constApp.UNDOABLE.LIMIT,
         }),
-        // directoryTree: undoable(directoryTreeReducer, {
-        //     undoType: syncActions.DIRECTORY_TREE_UNDO,
-        //     redoType: syncActions.DIRECTORY_TREE_REDO,
-        //     filter: includeAction([
-        //         syncActions.SET_PATH,
-        //         // syncActions.CHANGE_PATH,
-        //     ]),
-        //     limit: 10,
-        // }),
+        fileList: undoable(fileListReducer, {
+            undoType: syncActions.FILE_LIST_UNDO,
+            redoType: syncActions.FILE_LIST_REDO,
+            filter: includeAction([
+                syncActions.SET_FILE_LIST,
+                // syncActions.CHANGE_PATH,
+            ]),
+            limit: constApp.UNDOABLE.LIMIT,
+        }),
         historyNavigator: undoable(historyNavigatorReducer, {
             undoType: syncActions.HISTORY_NAVIGATOR_UNDO,
             redoType: syncActions.HISTORY_NAVIGATOR_REDO,
@@ -40,7 +42,7 @@ export default combineReducers(
                 syncActions.SET_PATH,
                 // syncActions.CHANGE_PATH,
             ]),
-            limit: 10,
+            limit: constApp.UNDOABLE.LIMIT,
         }),
     },
     initStateCreator,

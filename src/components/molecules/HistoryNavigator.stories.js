@@ -4,10 +4,10 @@ import { Provider } from 'react-redux'
 import { action } from '@storybook/addon-actions'
 import HistoryNavigator from 'components/molecules/HistoryNavigator'
 import HistoryNavigatorContainer from 'components/molecules/HistoryNavigatorContainer'
-import { constFileExplorer } from 'common/constants'
+import { constApp } from 'common/constants'
 import App from 'provider/App'
 import base from 'paths.macro'
-import configureStore from '../redux/stores/configureStore'
+import configureStore from '../../redux/stores/configureStore'
 
 export default {
     title: `${base}HistoryNavigator`,
@@ -52,7 +52,7 @@ useStore.story = {
 
 export const useProvider = () => (
     <App
-        type={constFileExplorer.TYPE.FILE_LIST}
+        type={constApp.TYPE.FILE_LIST}
         onBack={action('BACK')}
         onForward={action('FORWARD')}
         onRefresh={action('REFRESH')}

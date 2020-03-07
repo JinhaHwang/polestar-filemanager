@@ -4,7 +4,7 @@ import base from 'paths.macro'
 import { action } from '@storybook/addon-actions'
 import DirectoryTree from 'components/organisms/DirectoryTree'
 import App from 'provider/App'
-import { constFileExplorer } from 'common/constants'
+import { constApp } from 'common/constants'
 
 export default {
     title: `${base}DirectoryTree`,
@@ -51,7 +51,7 @@ data.story = {
 
 export const actuallyUse = () => (
     <App
-        type={constFileExplorer.TYPE.DIRECTORY_TREE}
+        type={constApp.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}
         items={[

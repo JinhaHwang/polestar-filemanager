@@ -14,6 +14,9 @@ export const changePath = createAction(CHANGE_PATH)
 export const INIT_DIRECTORY_TREE = 'INIT_DIRECTORY_TREE'
 export const initDirectoryTree = createAction(INIT_DIRECTORY_TREE)
 
+export const SET_DIRECTORY_TREE = 'SET_DIRECTORY_TREE'
+export const setDirectoryTree = createAction(SET_DIRECTORY_TREE)
+
 export const SELECT_TREE_NODE = 'SELECT_TREE_NODE'
 export const selectTreeNode = createAction(SELECT_TREE_NODE)
 
@@ -21,6 +24,8 @@ export const selectTreeNode = createAction(SELECT_TREE_NODE)
 export const INIT_FILE_LIST = 'INIT_FILE_LIST'
 export const initFileList = createAction(INIT_FILE_LIST)
 
+export const SET_FILE_LIST = 'SET_FILE_LIST'
+export const setFileList = createAction(SET_FILE_LIST)
 
 // undo redo 관련 액션
 export const HISTORY_NAVIGATOR_UNDO = 'HISTORY_NAVIGATOR_UNDO'
@@ -34,3 +39,9 @@ export const directoryTreeUndo = createAction(DIRECTORY_TREE_UNDO)
 
 export const DIRECTORY_TREE_REDO = 'DIRECTORY_TREE_REDO'
 export const directoryTreeRedo = createAction(DIRECTORY_TREE_REDO)
+
+export const FILE_LIST_UNDO = 'FILE_LIST_UNDO'
+export const fileListUndo = createAction(FILE_LIST_UNDO)
+
+export const FILE_LIST_REDO = 'FILE_LIST_REDO'
+export const fileListRedo = createAction(FILE_LIST_REDO)

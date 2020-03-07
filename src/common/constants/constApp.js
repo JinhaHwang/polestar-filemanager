@@ -4,3 +4,6 @@ export const TYPE = {
     FILE_EXPLORER: 'FileExplorer',
 }
 
+export const UNDOABLE = {
+    LIMIT: 10,
+}

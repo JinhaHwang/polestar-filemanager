@@ -3,7 +3,7 @@ import React from 'react'
 import base from 'paths.macro'
 import moment from 'moment'
 import FileGrid from 'components/molecules/FileGrid'
-import { constFileGrid } from '../common/constants'
+import { constFileGrid } from '../../common/constants'
 
 export default {
     title: `${base}FileGrid`,

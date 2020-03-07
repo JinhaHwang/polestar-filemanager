@@ -5,11 +5,11 @@ import { Provider } from 'react-redux'
 import FileList from 'components/organisms/FileList'
 import configureStore from 'redux/stores/configureStore'
 import App from 'provider/App'
-import { constFileExplorer } from 'common/constants'
+import { constApp } from 'common/constants'
 import { fromJS } from 'immutable'
-import rootReducer from '../redux/reducers/rootReducer'
-import directoryTreeReducer from "../redux/reducers/directoryTreeReducer"
-import {syncActions} from "../redux/actions"
+import rootReducer from '../../redux/reducers/rootReducer'
+import directoryTreeReducer from "../../redux/reducers/directoryTreeReducer"
+import {syncActions} from "../../redux/actions"
 
 export default {
     title: `${base}FileList`,
@@ -55,8 +55,8 @@ initStoreByProps.story = {
 
 export const stateIsolated = () => (
     <>
-        <App type={constFileExplorer.TYPE.FILE_LIST} />
-        <App type={constFileExplorer.TYPE.FILE_LIST} />
+        <App type={constApp.TYPE.FILE_LIST} />
+        <App type={constApp.TYPE.FILE_LIST} />
     </>
 )
 stateIsolated.story = {
