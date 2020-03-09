@@ -14,8 +14,8 @@ export const changePath = createAction(CHANGE_PATH)
 export const INIT_DIRECTORY_TREE = 'INIT_DIRECTORY_TREE'
 export const initDirectoryTree = createAction(INIT_DIRECTORY_TREE)
 
-export const SET_DIRECTORY_TREE = 'SET_DIRECTORY_TREE'
-export const setDirectoryTree = createAction(SET_DIRECTORY_TREE)
+export const SET_DIRECTORY_TREE_ITEMS = 'SET_DIRECTORY_TREE_ITEMS'
+export const setDirectoryTreeItems = createAction(SET_DIRECTORY_TREE_ITEMS)
 
 export const SELECT_TREE_NODE = 'SELECT_TREE_NODE'
 export const selectTreeNode = createAction(SELECT_TREE_NODE)

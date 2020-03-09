@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Provider } from 'react-redux'
-import DirectoryTree from 'components/organisms/DirectoryTree'
+import DirectoryTreeContainer from 'components/organisms/DirectoryTreeContainer'
 import { constApp } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/organisms/FileList'
@@ -52,6 +52,8 @@ class App extends Component {
         }
     }
 
+    // todo : 트리 나오게 해야됨
+
     render() {
         const {
             className,
@@ -69,7 +71,7 @@ class App extends Component {
                         <FileExplorer {...rest} />
                     )}
                     {type === constApp.TYPE.DIRECTORY_TREE && (
-                        <DirectoryTree {...rest} />
+                        <DirectoryTreeContainer {...rest} />
                     )}
                     {type === constApp.TYPE.FILE_LIST && <FileList {...rest} />}
                 </div>

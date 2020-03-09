@@ -1,9 +1,12 @@
 // eslint-disable-next-line max-classes-per-file
-import React from 'react'
+import React, {useCallback, useEffect, useRef} from 'react'
+import { Provider } from 'react-redux'
 import base from 'paths.macro'
 import moment from 'moment'
 import FileGrid from 'components/molecules/FileGrid'
+import FileGridContainer from 'components/molecules/FileGridContainer'
 import { constFileGrid } from '../../common/constants'
+import configureStore from '../../redux/stores/configureStore'
 
 export default {
     title: `${base}FileGrid`,
@@ -19,12 +22,12 @@ index.story = {
 
 export const overwriteHeight = () => <FileGrid height={200} />
 
-overwriteHeight.story = {
-    name: 'overwrite height',
-}
-
 export const rowData = () => {
-    const addIsDirectoryKeyByMode = ({ mode, ...file }) => ({ ...file, mode, isDirectory: mode.charAt(0) === 'd'})
+    const addIsDirectoryKeyByMode = ({ mode, ...file }) => ({
+        ...file,
+        mode,
+        isDirectory: mode.charAt(0) === 'd',
+    })
     const data = [
         {
             name: 'test',
@@ -41,17 +44,10 @@ export const rowData = () => {
             group: 'staff',
             size: '75B',
             modified: moment(),
-        }
+        },
     ]
 
-    return (
-        <FileGrid
-            rowData={data.map(addIsDirectoryKeyByMode)}
-        />
-    )
-}
-rowData.story = {
-    name: 'row data',
+    return <FileGrid rowData={data.map(addIsDirectoryKeyByMode)} />
 }
 
 // TODO events 와 data 스토리 작성
@@ -60,4 +56,26 @@ export const events = () => {
         console.log(params)
     }
     return <FileGrid onGridReady={handleGridReady} />
+}
+
+export const useReference = () => {
+    const gridRef = useRef()
+
+    useEffect(() => {
+        console.log(gridRef)
+    }, [])
+    const handleGridReady = useCallback(params => {
+        console.log(params)
+        console.log(gridRef)
+
+        // gridRef.current.
+        gridRef.current.rowData()
+    }, [])
+    const store = configureStore()
+
+    return (
+        <Provider store={store}>
+            <FileGridContainer ref={gridRef} onGridReady={handleGridReady} />)
+        </Provider>
+    )
 }

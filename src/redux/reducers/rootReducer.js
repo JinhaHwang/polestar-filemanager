@@ -2,7 +2,7 @@ import { combineReducers } from 'redux-immutable'
 import { Record, fromJS } from 'immutable'
 import undoable, { includeAction, excludeAction } from 'redux-undo'
 import directoryTreeReducer from './directoryTreeReducer'
-import { syncActions } from '../actions'
+import {asyncActions, syncActions} from '../actions'
 import historyNavigatorReducer from './historyNavigatorReducer'
 import fileListReducer from './fileListReducer'
 import { constApp } from '../../common/constants'
@@ -22,7 +22,8 @@ export default combineReducers(
             undoType: syncActions.DIRECTORY_TREE_UNDO,
             redoType: syncActions.DIRECTORY_TREE_REDO,
             filter: includeAction([
-                syncActions.SET_DIRECTORY_TREE,
+                syncActions.SET_DIRECTORY_TREE_ITEMS,
+                asyncActions.fetchDirectoryTree.fulfilled,
                 // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
@@ -32,6 +33,7 @@ export default combineReducers(
             redoType: syncActions.FILE_LIST_REDO,
             filter: includeAction([
                 syncActions.SET_FILE_LIST_ITEMS,
+                asyncActions.fetchFileList.fulfilled,
                 // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,

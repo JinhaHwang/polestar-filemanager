@@ -1,41 +1,27 @@
-import { createAction } from 'redux-actions'
-import moment from 'moment'
+import { createAsyncAction } from 'redux-promise-middleware-actions'
 import {
-    setFileListItems,
-    directoryTreeUndo,
-    fileListUndo,
-    historyNavigatorUndo,
     directoryTreeRedo,
+    directoryTreeUndo,
     fileListRedo,
+    fileListUndo,
     historyNavigatorRedo,
+    historyNavigatorUndo,
 } from './syncActions'
+import { fileApi } from '../../common/apis'
 
-export const myThunk = () => dispatch => dispatch(createAction('HELLO')())
+export const fetchDirectoryTree = createAsyncAction(
+    'FETCH_DIRECTORY_TREE',
+    fileApi.getDirectoryTreeItems,
+)
+
+export const fetchFileList = createAsyncAction(
+    'FETCH_FILE_LIST',
+    fileApi.getFileListItems,
+)
 
 export const explorePath = path => (dispatch, getState) => {
-    dispatch(createAction('EXPLORE_PATH')(path))
-    dispatch(createAction('FETCH_FILE_LIST')(path))
-    console.log(getState().toJS())
-    dispatch(
-        setFileListItems([
-            {
-                name: 'test',
-                mode: '-rw-r--r--',
-                owner: 'hwangjinha',
-                group: 'staff',
-                size: '75B',
-                modified: moment(),
-            },
-            {
-                name: 'test2',
-                mode: 'drwxr-xr-x',
-                owner: 'hwangjinha',
-                group: 'staff',
-                size: '75B',
-                modified: moment(),
-            },
-        ]),
-    )
+    dispatch(fetchDirectoryTree('/some/api/directories', path))
+    dispatch(fetchFileList('/some/api/files', path))
 }
 
 export const historyBack = () => dispatch => {

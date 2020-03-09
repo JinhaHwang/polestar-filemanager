@@ -11,12 +11,22 @@ const initState = fromJS({
 const directoryTreeReducer = handleActions(
     {
         [syncActions.initDirectoryTree]: initReducerCreator(initState),
-        [syncActions.setDirectoryTree]: (state, action) => {
+        [syncActions.setDirectoryTreeItems]: (state, action) => {
             return state.set('items', fromJS(action.payload))
         },
         [syncActions.selectTreeNode]: (state, action) => {
             return state.set('selectedNode', fromJS(action.payload))
         },
+
+        [asyncActions.fetchDirectoryTree.pending]: (state, action) =>
+            state.set('pending', true),
+        [asyncActions.fetchDirectoryTree.fulfilled]: (state, action) =>
+            state
+                .set('items', fromJS(action.payload))
+                .set('error', undefined)
+                .set('pending', false),
+        [asyncActions.fetchDirectoryTree.rejected]: (state, action) =>
+            state.set('error', action.payload).set('pending', false),
     },
     initState,
 )

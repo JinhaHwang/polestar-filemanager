@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from "classnames"
 import PropTypes from "prop-types"
-import DirectoryTree from "./DirectoryTree"
+import DirectoryTreeContainer from "./DirectoryTreeContainer"
 import FileGridContainer from "../molecules/FileGridContainer"
 import HistoryNavigatorContainer from "../molecules/HistoryNavigatorContainer"
 
@@ -22,7 +22,7 @@ const FileExplorer = props => {
                         flex: 1,
                     }}
                 >
-                    <DirectoryTree />
+                    <DirectoryTreeContainer />
                 </div>
                 <div
                     style={{

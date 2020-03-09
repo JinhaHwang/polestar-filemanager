@@ -18,16 +18,16 @@ const FileGrid = props => {
         columnDefs,
         items,
         onGridReady,
+        forwardRef,
         ...rest
     } = props
     const isInit = useRef(true)
-    const gridRef = useRef(null)
 
     // didupdate
     useEffect(() => {
         // mount 시점에는 실행 안시키려구.
-        if (!isInit.current) {
-            gridRef.current.rowData()
+        if (!isInit.current && forwardRef) {
+            forwardRef.current.rowData()
         }
     }, [items])
 
@@ -49,7 +49,7 @@ const FileGrid = props => {
             {...rest}
             // 덮어 쓸 값은 하단에
             className={classNames(defaultClassName, className)}
-            ref={gridRef}
+            ref={forwardRef}
             columnDefs={columnDefs}
             // 원래 ag-grid-react에서는 rowData가 props로 넘어가야하는데
             // polestar-ui-kit에 구현된 Grid는 items를 props로 넘기면 api.setRowData(props.items)를 내부적으로 호출하게 돼있음
@@ -65,6 +65,7 @@ FileGrid.propTypes = {
     columnDefs: PropTypes.array,
     items: PropTypes.array,
     onGridReady: PropTypes.func,
+    forwardRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 }
 
 FileGrid.defaultProps = {
@@ -74,6 +75,7 @@ FileGrid.defaultProps = {
     columnDefs: constFileGrid.DEFAULT_COLUMN_DEFS,
     items: null,
     onGridReady: null,
+    forwardRef: null,
 }
 
 export default FileGrid

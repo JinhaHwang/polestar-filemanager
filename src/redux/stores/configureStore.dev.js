@@ -3,6 +3,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reduxThunk from 'redux-thunk'
 import rootReducer from 'redux/reducers/rootReducer'
+import promise from 'redux-promise-middleware'
 // import rootSaga from '../sagas'
 
 export default function configureStore(initialState) {
@@ -16,14 +17,22 @@ export default function configureStore(initialState) {
         rootReducer,
         initialState,
         composeEnhancers(
-            applyMiddleware(/* logger, */ reduxThunk, sagaMiddleware),
+            applyMiddleware(
+                /* logger, */
+
+                promise,
+                reduxThunk,
+                sagaMiddleware,
+            ),
         ),
     )
     if (module.hot) {
         module.hot.accept('../reducers/rootReducer', () => {
-            import('../reducers/rootReducer').then(({ default: newRootReducer }) => {
-                store.replaceReducer(newRootReducer)
-            })
+            import('../reducers/rootReducer').then(
+                ({ default: newRootReducer }) => {
+                    store.replaceReducer(newRootReducer)
+                },
+            )
         })
     }
 
