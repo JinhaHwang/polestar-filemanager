@@ -52,8 +52,6 @@ class App extends Component {
         }
     }
 
-    // todo : 트리 나오게 해야됨
-
     render() {
         const {
             className,

@@ -54,21 +54,23 @@ export const actuallyUse = () => (
         type={constApp.TYPE.DIRECTORY_TREE}
         onSelect={action('selected')}
         onExpand={action('expanded')}
-        items={[
-            { title: 'Expand to load', key: '0-1' },
-            {
-                title: 'Expand to load',
-                key: '0-2',
-                children: [
-                    {
-                        key: '0-2-1',
-                        title: 'hello',
-                        isLeaf: true,
-                    },
-                ],
-            },
-            { title: 'Tree Node', isLeaf: true, key: '0-3' },
-        ]}
+        directoryTree={{
+            items: [
+                { title: 'Expand to load', key: '0-1' },
+                {
+                    title: 'Expand to load',
+                    key: '0-2',
+                    children: [
+                        {
+                            key: '0-2-1',
+                            title: 'hello',
+                            isLeaf: true,
+                        },
+                    ],
+                },
+                { title: 'Tree Node', isLeaf: true, key: '0-3' },
+            ]
+        }}
     />
 )
 actuallyUse.story = {
