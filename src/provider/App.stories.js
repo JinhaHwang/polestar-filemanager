@@ -1,7 +1,8 @@
 import base from 'paths.macro'
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import App from './App'
 import { constApp } from '../common/constants'
+import {syncActions} from "../redux/actions"
 
 export default {
     title: `${base}App`,
@@ -43,4 +44,15 @@ export const typeDirectoryTree = () => {
 
 export const typeFileList = () => {
     return <App type={constApp.TYPE.FILE_LIST} />
+}
+
+export const useRefTest = () => {
+    const appRef = useRef()
+    useEffect(() => {
+        // didmount
+        console.log(appRef.current)
+        const { store } = appRef.current
+        store.dispatch(syncActions.setPath('hello world'))
+    }, [])
+    return <App ref={appRef} type={constApp.TYPE.FILE_LIST} />
 }

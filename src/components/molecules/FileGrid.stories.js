@@ -5,8 +5,9 @@ import base from 'paths.macro'
 import moment from 'moment'
 import FileGrid from 'components/molecules/FileGrid'
 import FileGridContainer from 'components/molecules/FileGridContainer'
-import { constFileGrid } from '../../common/constants'
+import {constApp, constFileGrid} from '../../common/constants'
 import configureStore from '../../redux/stores/configureStore'
+import App from "../.."
 
 export default {
     title: `${base}FileGrid`,
@@ -56,26 +57,4 @@ export const events = () => {
         console.log(params)
     }
     return <FileGrid onGridReady={handleGridReady} />
-}
-
-export const useReference = () => {
-    const gridRef = useRef()
-
-    useEffect(() => {
-        console.log(gridRef)
-    }, [])
-    const handleGridReady = useCallback(params => {
-        console.log(params)
-        console.log(gridRef)
-
-        // gridRef.current.
-        gridRef.current.rowData()
-    }, [])
-    const store = configureStore()
-
-    return (
-        <Provider store={store}>
-            <FileGridContainer ref={gridRef} onGridReady={handleGridReady} />)
-        </Provider>
-    )
 }

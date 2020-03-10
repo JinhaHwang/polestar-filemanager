@@ -18,11 +18,10 @@ const FileGrid = props => {
         columnDefs,
         items,
         onGridReady,
-        forwardRef,
         ...rest
     } = props
     const isInit = useRef(true)
-    const gridRef = useRef(forwardRef)
+    const gridRef = useRef()
 
     // didupdate
     useEffect(() => {
@@ -66,7 +65,6 @@ FileGrid.propTypes = {
     columnDefs: PropTypes.array,
     items: PropTypes.array,
     onGridReady: PropTypes.func,
-    forwardRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 }
 
 FileGrid.defaultProps = {
@@ -76,7 +74,6 @@ FileGrid.defaultProps = {
     columnDefs: constFileGrid.DEFAULT_COLUMN_DEFS,
     items: null,
     onGridReady: null,
-    forwardRef: null,
 }
 
 export default FileGrid

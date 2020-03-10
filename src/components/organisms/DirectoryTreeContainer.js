@@ -1,6 +1,5 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { directoryTreeItemsSelector } from '../../redux/selectors'
+import {connect} from 'react-redux'
+import {directoryTreeItemsSelector} from '../../redux/selectors'
 import DirectoryTree from './DirectoryTree'
 
 const mapStateToProps = state => {
@@ -10,8 +9,5 @@ const mapStateToProps = state => {
     }
 }
 
-const Connected = connect(mapStateToProps)(DirectoryTree)
-const Forwarded = React.forwardRef((props, ref) => (
-    <Connected {...props} forwardRef={ref} />
-))
-export default Forwarded
+const ConnectedComponent = connect(mapStateToProps)(DirectoryTree)
+export default ConnectedComponent
