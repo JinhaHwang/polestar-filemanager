@@ -23,7 +23,7 @@ export default combineReducers(
             redoType: syncActions.DIRECTORY_TREE_REDO,
             filter: includeAction([
                 syncActions.SET_DIRECTORY_TREE_ITEMS,
-                asyncActions.fetchDirectoryTree.fulfilled,
+                asyncActions.fetchDirectoryTree.fulfilled.toString(),
                 // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
@@ -33,7 +33,7 @@ export default combineReducers(
             redoType: syncActions.FILE_LIST_REDO,
             filter: includeAction([
                 syncActions.SET_FILE_LIST_ITEMS,
-                asyncActions.fetchFileList.fulfilled,
+                asyncActions.fetchFileList.fulfilled.toString(),
                 // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
