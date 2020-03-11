@@ -7,7 +7,7 @@ import classNames from 'classnames'
 const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
 const DirectoryTree = props => {
-    const { defaultClassName, className, items, ...rest } = props
+    const { defaultClassName, className, items, hideInput, ...rest } = props
 
     const treeRef = useRef()
 
@@ -57,7 +57,7 @@ const DirectoryTree = props => {
             >
                 {renderTreeNodes(items)}
             </AntDirectoryTree>
-            <Field.Input />
+            { hideInput ? null : <Field.Input /> }
         </div>
     )
 }
@@ -68,6 +68,7 @@ DirectoryTree.propTypes = {
     items: PropTypes.array,
     onSelect: PropTypes.func,
     onExpand: PropTypes.func,
+    hideInput: PropTypes.bool,
 }
 DirectoryTree.defaultProps = {
     defaultClassName: 'DirectoryTree',
@@ -80,6 +81,7 @@ DirectoryTree.defaultProps = {
     items: null,
     onSelect: null,
     onExpand: null,
+    hideInput: false,
 }
 
 export default DirectoryTree
