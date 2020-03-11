@@ -23,19 +23,24 @@ export const typeDirectoryTree = () => {
             type={constApp.TYPE.DIRECTORY_TREE}
             directoryTree={{
                 items: [
-                    { title: 'Expand to load', key: '0-1' },
+                    { title: 'parent 0', key: 'parent 0' },
                     {
-                        title: 'Expand to load',
-                        key: '0-2',
+                        title: 'parent 1',
+                        key: 'parent 1',
                         children: [
                             {
-                                key: '0-2-1',
-                                title: 'hello',
+                                title: 'leaf 1-0',
+                                key: 'parent 1/leaf 1-0',
+                                isLeaf: true,
+                            },
+                            {
+                                title: 'leaf 1-1',
+                                key: 'parent 1/leaf 1-1',
                                 isLeaf: true,
                             },
                         ],
                     },
-                    { title: 'Tree Node', isLeaf: true, key: '0-3' },
+                    { title: 'hello', isLeaf: true, key: 'hello' },
                 ]
             }}
         />

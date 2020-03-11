@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import { Tree } from 'antd'
 import { Field } from 'polestar-ui-kit'
@@ -11,9 +11,12 @@ const DirectoryTree = props => {
 
     const treeRef = useRef()
 
+    const [path, setPath] = useState('')
+
     const handleSelect = useCallback((keys, event) => {
         const { onSelect } = rest
         if (onSelect) onSelect(keys, event)
+        setPath(keys[0])
     }, [])
 
     const handleExpand = useCallback((keys, event) => {
@@ -49,7 +52,7 @@ const DirectoryTree = props => {
             <AntDirectoryTree
                 ref={treeRef}
                 {...rest}
-                multiple
+                // multiple
                 defaultExpandAll
                 onSelect={handleSelect}
                 onExpand={handleExpand}
@@ -57,7 +60,13 @@ const DirectoryTree = props => {
             >
                 {renderTreeNodes(items)}
             </AntDirectoryTree>
-            { hideInput ? null : <Field.Input /> }
+            {
+                hideInput ? null
+                : <Field.Input
+                    readOnly
+                    value={path}
+                />
+            }
         </div>
     )
 }
@@ -69,6 +78,7 @@ DirectoryTree.propTypes = {
     onSelect: PropTypes.func,
     onExpand: PropTypes.func,
     hideInput: PropTypes.bool,
+    path: PropTypes.string,
 }
 DirectoryTree.defaultProps = {
     defaultClassName: 'DirectoryTree',
@@ -82,6 +92,7 @@ DirectoryTree.defaultProps = {
     onSelect: null,
     onExpand: null,
     hideInput: false,
+    path: '',
 }
 
 export default DirectoryTree
