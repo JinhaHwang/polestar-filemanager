@@ -1,5 +1,5 @@
 import base from 'paths.macro'
-import React, {useEffect, useRef} from 'react'
+import React, {useCallback, useEffect, useRef} from 'react'
 import App from './App'
 import { constApp } from '../common/constants'
 import {syncActions} from "../redux/actions"
@@ -58,6 +58,14 @@ export const useRefTest = () => {
         console.log(appRef.current)
         const { store } = appRef.current
         store.dispatch(syncActions.setPath('hello world'))
+        console.log(appRef.current.getAllState())
     }, [])
-    return <App ref={appRef} type={constApp.TYPE.FILE_LIST} />
+
+    const handleGetAllState = useCallback(() => console.log(appRef.current.getAllState()), [])
+    return (<>
+        <div>
+            <button onClick={handleGetAllState}>getStateLog</button>
+        </div>
+        <App ref={appRef} type={constApp.TYPE.FILE_LIST} />
+    </>)
 }

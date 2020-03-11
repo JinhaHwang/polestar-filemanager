@@ -12,23 +12,39 @@ const HistoryNavigator = ({
     trimPath,
     ...rest
 }) => {
-    const handleBack = useCallback(e => {
-        if (rest.historyBack) rest.historyBack()
-        if (onBack) onBack(e)
-    }, [])
+    const handleBack = useCallback(
+        e => {
+            if (rest.historyBack) rest.historyBack()
+            if (onBack) onBack(e)
+            console.log('handleBack', rest)
+        },
+        [],
+    )
 
-    const handleForward = useCallback(e => {
-        if (rest.historyForward) rest.historyForward()
-        if (onForward) onForward(e)
-    }, [])
-    const handleRefresh = useCallback(e => {
-        if (onRefresh) onRefresh(e)
-    }, [])
-    const handleChange = useCallback(e => {
-        const { value } = e.target
-        if (rest.changePath) rest.changePath(value)
-        if (onChange) onChange(value)
-    }, [])
+    const handleForward = useCallback(
+        e => {
+            if (rest.historyForward) rest.historyForward()
+            if (onForward) onForward(e)
+        },
+        [],
+    )
+
+    const handleRefresh = useCallback(
+        e => {
+            if (onRefresh) onRefresh(e)
+        },
+        [],
+    )
+
+    const handleChange = useCallback(
+        e => {
+            const { value } = e.target
+            if (rest.changePath) rest.changePath(value)
+            if (onChange) onChange(value)
+        },
+        [],
+    )
+
     const handleSubmit = useCallback(
         e => {
             if (path.length > 0 && trimPath.length > 0) {

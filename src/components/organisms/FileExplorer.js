@@ -22,7 +22,7 @@ const FileExplorer = props => {
                         flex: 1,
                     }}
                 >
-                    <DirectoryTreeContainer hideInput={true}/>
+                    <DirectoryTreeContainer hideInput/>
                 </div>
                 <div
                     style={{

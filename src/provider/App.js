@@ -7,8 +7,11 @@ import { constApp } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/organisms/FileList'
 import { syncActions } from '../redux/actions'
-import 'styles/components/FileExplorer.less'
 import FileExplorer from '../components/organisms/FileExplorer'
+import {presentStateAll} from "../redux/selectors"
+
+import 'styles/index.less'
+import './App.less'
 
 /**
  * store를 connect하는 container를 이용하려면
@@ -50,6 +53,10 @@ class App extends Component {
         if (fileList) {
             this.store.dispatch(syncActions.initFileList(fileList))
         }
+    }
+
+    getAllState = () => {
+        return presentStateAll(this.store.getState()).toJS()
     }
 
     render() {
