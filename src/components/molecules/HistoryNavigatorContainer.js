@@ -1,5 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ActionCreators} from "redux-undo"
+
 import { syncActions, asyncActions } from 'redux/actions'
 import HistoryNavigator from './HistoryNavigator'
 import {
@@ -22,8 +24,8 @@ const mapDispatchToProps = dispatch => {
         ...bindActionCreators(
             {
                 explorePath: asyncActions.explorePath,
-                historyBack: asyncActions.historyBack,
-                historyForward: asyncActions.historyForward,
+                historyBack: ActionCreators.undo,
+                historyForward: ActionCreators.redo,
                 changePath: syncActions.changePath,
                 setPath: syncActions.setPath,
             },

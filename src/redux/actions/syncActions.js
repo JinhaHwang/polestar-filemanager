@@ -27,21 +27,3 @@ export const initFileList = createAction(INIT_FILE_LIST)
 export const SET_FILE_LIST_ITEMS = 'SET_FILE_LIST_ITEMS'
 export const setFileListItems = createAction(SET_FILE_LIST_ITEMS)
 
-// undo redo 관련 액션
-export const HISTORY_NAVIGATOR_UNDO = 'HISTORY_NAVIGATOR_UNDO'
-export const historyNavigatorUndo = createAction(HISTORY_NAVIGATOR_UNDO)
-
-export const HISTORY_NAVIGATOR_REDO = 'HISTORY_NAVIGATOR_REDO'
-export const historyNavigatorRedo = createAction(HISTORY_NAVIGATOR_REDO)
-
-export const DIRECTORY_TREE_UNDO = 'DIRECTORY_TREE_UNDO'
-export const directoryTreeUndo = createAction(DIRECTORY_TREE_UNDO)
-
-export const DIRECTORY_TREE_REDO = 'DIRECTORY_TREE_REDO'
-export const directoryTreeRedo = createAction(DIRECTORY_TREE_REDO)
-
-export const FILE_LIST_UNDO = 'FILE_LIST_UNDO'
-export const fileListUndo = createAction(FILE_LIST_UNDO)
-
-export const FILE_LIST_REDO = 'FILE_LIST_REDO'
-export const fileListRedo = createAction(FILE_LIST_REDO)

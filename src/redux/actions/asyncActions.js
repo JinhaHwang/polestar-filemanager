@@ -1,12 +1,5 @@
 import { createAsyncAction } from 'redux-promise-middleware-actions'
-import {
-    directoryTreeRedo,
-    directoryTreeUndo,
-    fileListRedo,
-    fileListUndo,
-    historyNavigatorRedo,
-    historyNavigatorUndo,
-} from './syncActions'
+import { setPath } from './syncActions'
 import { fileApi } from '../../common/apis'
 
 export const fetchDirectoryTree = createAsyncAction(
@@ -20,18 +13,7 @@ export const fetchFileList = createAsyncAction(
 )
 
 export const explorePath = path => (dispatch, getState) => {
+    dispatch(setPath(path))
     dispatch(fetchDirectoryTree('/some/api/directories', path))
     dispatch(fetchFileList('/some/api/files', path))
-}
-
-export const historyBack = () => dispatch => {
-    dispatch(historyNavigatorUndo())
-    dispatch(fileListUndo())
-    dispatch(directoryTreeUndo())
-}
-
-export const historyForward = () => dispatch => {
-    dispatch(historyNavigatorRedo())
-    dispatch(fileListRedo())
-    dispatch(directoryTreeRedo())
 }

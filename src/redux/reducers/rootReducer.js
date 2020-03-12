@@ -14,36 +14,28 @@ const initStateCreator = () =>
     fromJS({
         historyNavigator: undefined,
         directoryTree: undefined,
+        fileList: undefined,
     })
 // redux-immutable모듈의 combineReducers는 두번째 인자로 getDefaultState 함수를 받는다(여기선 Record로 만든 Immutable 생성자)
 export default combineReducers(
     {
         directoryTree: undoable(directoryTreeReducer, {
-            undoType: syncActions.DIRECTORY_TREE_UNDO,
-            redoType: syncActions.DIRECTORY_TREE_REDO,
             filter: includeAction([
                 syncActions.SET_DIRECTORY_TREE_ITEMS,
                 asyncActions.fetchDirectoryTree.fulfilled.toString(),
-                // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
         }),
         fileList: undoable(fileListReducer, {
-            undoType: syncActions.FILE_LIST_UNDO,
-            redoType: syncActions.FILE_LIST_REDO,
             filter: includeAction([
                 syncActions.SET_FILE_LIST_ITEMS,
                 asyncActions.fetchFileList.fulfilled.toString(),
-                // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
         }),
         historyNavigator: undoable(historyNavigatorReducer, {
-            undoType: syncActions.HISTORY_NAVIGATOR_UNDO,
-            redoType: syncActions.HISTORY_NAVIGATOR_REDO,
             filter: includeAction([
                 syncActions.SET_PATH,
-                // syncActions.CHANGE_PATH,
             ]),
             limit: constApp.UNDOABLE.LIMIT,
         }),
