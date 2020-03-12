@@ -1,8 +1,8 @@
 import base from 'paths.macro'
-import React, {useCallback, useEffect, useRef} from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import App from './App'
 import { constApp } from '../common/constants'
-import {syncActions} from "../redux/actions"
+import { syncActions } from '../redux/actions'
 
 export default {
     title: `${base}App`,
@@ -41,7 +41,7 @@ export const typeDirectoryTree = () => {
                         ],
                     },
                     { title: 'hello', isLeaf: true, key: 'hello' },
-                ]
+                ],
             }}
         />
     )
@@ -56,16 +56,37 @@ export const useRefTest = () => {
     useEffect(() => {
         // didmount
         console.log(appRef.current)
-        const { store } = appRef.current
-        store.dispatch(syncActions.setPath('hello world'))
+        // const { store } = appRef.current
+        // store.dispatch(syncActions.setPath('hello world'))
         console.log(appRef.current.getAllState())
     }, [])
 
-    const handleGetAllState = useCallback(() => console.log(appRef.current.getAllState()), [])
-    return (<>
-        <div>
-            <button onClick={handleGetAllState}>getStateLog</button>
-        </div>
-        <App ref={appRef} type={constApp.TYPE.FILE_LIST} />
-    </>)
+    const handleGetAllState = useCallback(
+        () => console.log(appRef.current.getAllState()),
+        [],
+    )
+    const handleGetActions = useCallback(
+        () => console.log(appRef.current.getActions()),
+        [],
+    )
+    const handleSetPath = useCallback(() => {
+        const { setPath } = appRef.current.getActions()
+        setPath('/a/b/c/d')
+    }, [])
+    return (
+        <>
+            <div>
+                <button type="button" onClick={handleGetAllState}>
+                    getStateLog
+                </button>
+                <button type="button" onClick={handleGetActions}>
+                    getActionsLog
+                </button>
+                <button type="button" onClick={handleSetPath}>
+                    handleSetPath
+                </button>
+            </div>
+            <App ref={appRef} type={constApp.TYPE.FILE_LIST} />
+        </>
+    )
 }

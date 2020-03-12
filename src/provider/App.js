@@ -6,12 +6,13 @@ import DirectoryTreeContainer from 'components/organisms/DirectoryTreeContainer'
 import { constApp } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/organisms/FileList'
-import { syncActions } from '../redux/actions'
+import { asyncActions, syncActions } from '../redux/actions'
 import FileExplorer from '../components/organisms/FileExplorer'
-import {presentStateAll} from "../redux/selectors"
+import { presentStateAll } from '../redux/selectors'
 
 import 'styles/index.less'
 import './App.less'
+import { bindActionCreators } from 'redux'
 
 /**
  * store를 connect하는 container를 이용하려면
@@ -57,6 +58,25 @@ class App extends Component {
 
     getAllState = () => {
         return presentStateAll(this.store.getState()).toJS()
+    }
+
+    getActions = () => {
+        const { setDirectoryTreeItems, setFileListItems, setPath } = syncActions
+
+        const { fetchDirectoryTree, fetchFileList } = asyncActions
+
+        return {
+            ...bindActionCreators(
+                {
+                    fetchDirectoryTree,
+                    fetchFileList,
+                    setDirectoryTreeItems,
+                    setFileListItems,
+                    setPath,
+                },
+                this.store.dispatch,
+            ),
+        }
     }
 
     render() {
