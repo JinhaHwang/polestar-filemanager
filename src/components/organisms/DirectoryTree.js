@@ -3,11 +3,17 @@ import PropTypes from 'prop-types'
 import { Tree } from 'antd'
 import { Field } from 'polestar-ui-kit'
 import classNames from 'classnames'
+import {useSelector} from "react-redux"
+import {directoryTreeItemsSelector} from "../../redux/selectors"
 
 const { TreeNode, DirectoryTree: AntDirectoryTree } = Tree
 
 const DirectoryTree = props => {
-    const { defaultClassName, className, items, hideInput, ...rest } = props
+    const { defaultClassName, className, hideInput, ...rest } = props
+    const items = useSelector(state => {
+        const items$ = directoryTreeItemsSelector(state)
+        return items$ ? items$.toJS() : null
+    })
 
     const treeRef = useRef()
 
@@ -70,7 +76,6 @@ const DirectoryTree = props => {
 DirectoryTree.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     defaultClassName: PropTypes.string,
-    items: PropTypes.array,
     onSelect: PropTypes.func,
     onExpand: PropTypes.func,
     hideInput: PropTypes.bool,
@@ -79,12 +84,6 @@ DirectoryTree.propTypes = {
 DirectoryTree.defaultProps = {
     defaultClassName: 'DirectoryTree',
     className: '',
-    // items: [
-    //     { title: 'Expand to load', key: '0' },
-    //     { title: 'Expand to load', key: '1' },
-    //     { title: 'Tree Node', key: '2', isLeaf: true },
-    // ],
-    items: null,
     onSelect: null,
     onExpand: null,
     hideInput: false,

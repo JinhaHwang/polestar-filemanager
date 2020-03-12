@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import HistoryNavigatorContainer from '../molecules/HistoryNavigatorContainer'
-import FileGridContainer from '../molecules/FileGridContainer'
+import HistoryNavigator from '../molecules/HistoryNavigator'
+import FileGrid from '../molecules/FileGrid'
 
 const FileList = props => {
     const { defaultClassName, className } = props
     return (
         <div className={classNames(defaultClassName, className)}>
-            <HistoryNavigatorContainer />
-            <FileGridContainer />
+            <HistoryNavigator />
+            <FileGrid />
         </div>
     )
 }

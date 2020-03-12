@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Field } from 'polestar-ui-kit'
+import {useDispatch, useSelector} from "react-redux"
+import {ActionCreators} from "redux-undo"
+import {historyNavigatorPathSelector, trimPathSelector} from "../../redux/selectors"
+import {asyncActions, syncActions} from "../../redux/actions"
 
 const HistoryNavigator = ({
     onBack,
@@ -8,52 +12,53 @@ const HistoryNavigator = ({
     onRefresh,
     onChange,
     onSubmit,
-    path,
-    trimPath,
     ...rest
 }) => {
+    const dispatch = useDispatch()
+
+    const path = useSelector(state => historyNavigatorPathSelector(state))
+    const trimPath = useSelector(state => trimPathSelector(state))
+
     const handleBack = useCallback(
         e => {
-            if (rest.historyBack) rest.historyBack()
+            dispatch(ActionCreators.undo())
             if (onBack) onBack(e)
-            console.log('handleBack', rest)
         },
-        [],
+        [dispatch, onBack],
     )
 
     const handleForward = useCallback(
         e => {
-            if (rest.historyForward) rest.historyForward()
+            dispatch(ActionCreators.redo())
             if (onForward) onForward(e)
         },
-        [],
+        [dispatch, onForward],
     )
 
     const handleRefresh = useCallback(
         e => {
             if (onRefresh) onRefresh(e)
         },
-        [],
+        [onRefresh],
     )
 
     const handleChange = useCallback(
         e => {
             const { value } = e.target
-            if (rest.changePath) rest.changePath(value)
+            dispatch(syncActions.changePath(value))
             if (onChange) onChange(value)
         },
-        [],
+        [dispatch, onChange],
     )
 
     const handleSubmit = useCallback(
         e => {
-            if (path.length > 0 && trimPath.length > 0) {
-                // if (rest.setPath) rest.setPath(trimPath)
-                if (rest.explorePath) rest.explorePath(trimPath)
+            if (trimPath.length > 0) {
+                dispatch(asyncActions.explorePath(trimPath))
                 if (onSubmit) onSubmit(e)
             }
         },
-        [path, trimPath],
+        [dispatch, onSubmit, trimPath],
     )
     return (
         <div
@@ -92,8 +97,6 @@ HistoryNavigator.propTypes = {
     onRefresh: PropTypes.func,
     onChange: PropTypes.func,
     onSubmit: PropTypes.func,
-    path: PropTypes.string,
-    trimPath: PropTypes.string,
 }
 HistoryNavigator.defaultProps = {
     onBack: null,
@@ -101,8 +104,6 @@ HistoryNavigator.defaultProps = {
     onRefresh: null,
     onChange: null,
     onSubmit: null,
-    path: '',
-    trimPath: '',
 }
 
 export default HistoryNavigator

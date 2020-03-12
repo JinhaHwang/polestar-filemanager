@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { bindActionCreators } from 'redux'
 import { Provider } from 'react-redux'
-import DirectoryTreeContainer from 'components/organisms/DirectoryTreeContainer'
+import DirectoryTree from 'components/organisms/DirectoryTree'
 import { constApp } from 'common/constants'
 import configureStore from 'redux/stores/configureStore'
 import FileList from '../components/organisms/FileList'
@@ -99,7 +99,7 @@ class App extends Component {
                         <FileExplorer {...rest} />
                     )}
                     {type === constApp.TYPE.DIRECTORY_TREE && (
-                        <DirectoryTreeContainer {...rest} />
+                        <DirectoryTree {...rest} />
                     )}
                     {type === constApp.TYPE.FILE_LIST && <FileList {...rest} />}
                 </div>

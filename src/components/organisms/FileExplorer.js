@@ -1,9 +1,9 @@
 import React from 'react'
 import classNames from "classnames"
 import PropTypes from "prop-types"
-import DirectoryTreeContainer from "./DirectoryTreeContainer"
-import FileGridContainer from "../molecules/FileGridContainer"
-import HistoryNavigatorContainer from "../molecules/HistoryNavigatorContainer"
+import DirectoryTree from "./DirectoryTree"
+import FileGrid from "../molecules/FileGrid"
+import HistoryNavigator from "../molecules/HistoryNavigator"
 
 const FileExplorer = props => {
     const {
@@ -11,7 +11,7 @@ const FileExplorer = props => {
     } = props
     return (
         <div className={classNames(defaultClassName, className)}>
-            <HistoryNavigatorContainer />
+            <HistoryNavigator />
             <div
                 style={{
                     display: 'flex',
@@ -22,14 +22,14 @@ const FileExplorer = props => {
                         flex: 1,
                     }}
                 >
-                    <DirectoryTreeContainer hideInput/>
+                    <DirectoryTree hideInput/>
                 </div>
                 <div
                     style={{
                         flex: 4,
                     }}
                 >
-                    <FileGridContainer />
+                    <FileGrid />
                 </div>
             </div>
         </div>

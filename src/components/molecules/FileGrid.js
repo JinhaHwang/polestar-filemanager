@@ -5,6 +5,8 @@ import { Grid } from 'polestar-ui-kit'
 
 import { LicenseManager } from 'ag-grid-enterprise/main'
 import { constFileGrid } from 'common/constants'
+import { useSelector } from 'react-redux'
+import { fileListItemsSelector } from '../../redux/selectors'
 
 // ag-grid 라이센스 등록
 LicenseManager.setLicenseKey(
@@ -16,10 +18,13 @@ const FileGrid = props => {
         className,
         defaultClassName,
         columnDefs,
-        items,
         onGridReady,
         ...rest
     } = props
+    const items = useSelector(state => {
+        const items$ = fileListItemsSelector(state)
+        return items$ ? items$.toJS() : null
+    })
     const isInit = useRef(true)
     const gridRef = useRef()
 
@@ -38,9 +43,12 @@ const FileGrid = props => {
     }, [])
 
     // 함수 바인딩
-    const handleGridReady = useCallback(params => {
-        if (onGridReady) onGridReady(params)
-    }, [])
+    const handleGridReady = useCallback(
+        params => {
+            if (onGridReady) onGridReady(params)
+        },
+        [onGridReady],
+    )
 
     return (
         <Grid
@@ -63,7 +71,6 @@ FileGrid.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     defaultClassName: PropTypes.string,
     columnDefs: PropTypes.array,
-    items: PropTypes.array,
     onGridReady: PropTypes.func,
 }
 
@@ -72,7 +79,6 @@ FileGrid.defaultProps = {
     className: '',
     // 파일 목록 조회와 관련된 기본 컬럼정의
     columnDefs: constFileGrid.DEFAULT_COLUMN_DEFS,
-    items: null,
     onGridReady: null,
 }
 
