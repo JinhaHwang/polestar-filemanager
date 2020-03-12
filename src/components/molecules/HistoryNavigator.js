@@ -48,7 +48,7 @@ const HistoryNavigator = ({
     const handleSubmit = useCallback(
         e => {
             if (path.length > 0 && trimPath.length > 0) {
-                if (rest.setPath) rest.setPath(trimPath)
+                // if (rest.setPath) rest.setPath(trimPath)
                 if (rest.explorePath) rest.explorePath(trimPath)
                 if (onSubmit) onSubmit(e)
             }
