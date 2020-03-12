@@ -70,8 +70,15 @@ export const useRefTest = () => {
         [],
     )
     const handleSetPath = useCallback(() => {
-        const { setPath } = appRef.current.getActions()
+        const { explorePath,
+            setDirectoryTreeItems,
+            setFileListItems,
+            setPath,
+        } = appRef.current.getActions()
+        // explorePath('/a/b/c/d')
         setPath('/a/b/c/d')
+        // setDirectoryTreeItems([])
+        setFileListItems([])
     }, [])
     return (
         <>

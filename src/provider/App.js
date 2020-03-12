@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { bindActionCreators } from 'redux'
 import { Provider } from 'react-redux'
 import DirectoryTreeContainer from 'components/organisms/DirectoryTreeContainer'
 import { constApp } from 'common/constants'
@@ -12,7 +13,6 @@ import { presentStateAll } from '../redux/selectors'
 
 import 'styles/index.less'
 import './App.less'
-import { bindActionCreators } from 'redux'
 
 /**
  * store를 connect하는 container를 이용하려면
@@ -42,28 +42,30 @@ class App extends Component {
     constructor(props) {
         super(props)
         const { directoryTree, historyNavigator, fileList } = props
-        this.store = configureStore()
+        this.#store = configureStore()
         if (directoryTree) {
-            this.store.dispatch(syncActions.initDirectoryTree(directoryTree))
+            this.#store.dispatch(syncActions.initDirectoryTree(directoryTree))
         }
         if (historyNavigator) {
-            this.store.dispatch(
+            this.#store.dispatch(
                 syncActions.initHistoryNavigator(historyNavigator),
             )
         }
         if (fileList) {
-            this.store.dispatch(syncActions.initFileList(fileList))
+            this.#store.dispatch(syncActions.initFileList(fileList))
         }
     }
 
+    #store = null
+
     getAllState = () => {
-        return presentStateAll(this.store.getState()).toJS()
+        return presentStateAll(this.#store.getState()).toJS()
     }
 
     getActions = () => {
         const { setDirectoryTreeItems, setFileListItems, setPath } = syncActions
 
-        const { fetchDirectoryTree, fetchFileList } = asyncActions
+        const { fetchDirectoryTree, fetchFileList, explorePath } = asyncActions
 
         return {
             ...bindActionCreators(
@@ -73,8 +75,9 @@ class App extends Component {
                     setDirectoryTreeItems,
                     setFileListItems,
                     setPath,
+                    explorePath,
                 },
-                this.store.dispatch,
+                this.#store.dispatch,
             ),
         }
     }
@@ -90,7 +93,7 @@ class App extends Component {
             ...rest
         } = this.props
         return (
-            <Provider store={this.store}>
+            <Provider store={this.#store}>
                 <div className={classNames(defaultClassName, className)}>
                     {type === constApp.TYPE.FILE_EXPLORER && (
                         <FileExplorer {...rest} />
