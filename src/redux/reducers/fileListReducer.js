@@ -5,6 +5,8 @@ import { initReducerCreator } from './helper/commonReducer'
 
 const initState = fromJS({
     items: null,
+    pending: false,
+    error: undefined
 })
 
 const fileListReducer = handleActions(
@@ -13,7 +15,7 @@ const fileListReducer = handleActions(
         [syncActions.setFileListItems]: (state, action) => {
             return state.set('items', fromJS(action.payload))
         },
-        [asyncActions.fetchFileList.pending]: (state, action) =>
+        [asyncActions.fetchFileList.pending]: (state) =>
             state.set('pending', true),
         [asyncActions.fetchFileList.fulfilled]: (state, action) =>
             state
@@ -21,8 +23,7 @@ const fileListReducer = handleActions(
                 .set('error', undefined)
                 .set('pending', false),
         [asyncActions.fetchFileList.rejected]: (state, action) =>
-            // todo: 추후 에러도 fromJS로 감싸야할 듯?
-            state.set('error', action.payload).set('pending', false),
+            state.set('error', fromJS(action.payload)).set('pending', false),
     },
     initState,
 )

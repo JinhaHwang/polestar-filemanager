@@ -6,6 +6,8 @@ import { initReducerCreator } from './helper/commonReducer'
 const initState = fromJS({
     items: null,
     selectedNode: null,
+    pending: false,
+    error: undefined,
 })
 
 const directoryTreeReducer = handleActions(
@@ -18,7 +20,7 @@ const directoryTreeReducer = handleActions(
             return state.set('selectedNode', fromJS(action.payload))
         },
 
-        [asyncActions.fetchDirectoryTree.pending]: (state, action) =>
+        [asyncActions.fetchDirectoryTree.pending]: (state) =>
             state.set('pending', true),
         [asyncActions.fetchDirectoryTree.fulfilled]: (state, action) =>
             state
@@ -26,7 +28,7 @@ const directoryTreeReducer = handleActions(
                 .set('error', undefined)
                 .set('pending', false),
         [asyncActions.fetchDirectoryTree.rejected]: (state, action) =>
-            state.set('error', action.payload).set('pending', false),
+            state.set('error', fromJS(action.payload)).set('pending', false),
     },
     initState,
 )
