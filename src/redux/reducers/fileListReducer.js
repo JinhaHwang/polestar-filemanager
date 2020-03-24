@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 import { fromJS } from 'immutable'
-import { asyncActions, syncActions } from 'redux/actions'
+import { asyncActions, syncActions } from '../actions'
 import { initReducerCreator } from './helper/commonReducer'
 
 const initState = fromJS({

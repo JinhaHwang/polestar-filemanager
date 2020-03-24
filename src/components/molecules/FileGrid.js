@@ -2,10 +2,9 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Grid } from 'polestar-ui-kit'
-
-import { LicenseManager } from 'ag-grid-enterprise/main'
-import { constFileGrid } from 'common/constants'
 import { useSelector } from 'react-redux'
+import { LicenseManager } from 'ag-grid-enterprise/main'
+import { constFileGrid } from '../../common/constants'
 import { fileListItemsSelector } from '../../redux/selectors'
 
 // ag-grid 라이센스 등록

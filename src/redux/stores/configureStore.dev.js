@@ -1,10 +1,8 @@
 import { applyMiddleware, compose, createStore } from 'redux'
-// import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
 import reduxThunk from 'redux-thunk'
-import rootReducer from 'redux/reducers/rootReducer'
 import promise from 'redux-promise-middleware'
-// import rootSaga from '../sagas'
+import rootReducer from '../reducers/rootReducer'
 
 export default function configureStore(initialState) {
     // const logger = createLogger();
